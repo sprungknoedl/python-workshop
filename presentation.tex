@@ -1,0 +1,113 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\lstset{
+  basicstyle=\small,
+  breakatwhitespace=true,breaklines=true,%
+  tabsize=2, % Tabulatorbreite
+}
+
+\hypersetup{pdftitle={\inserttitle},
+  pdfsubject={\inserttitle},
+  pdfauthor={\insertauthor},
+  pdfkeywords={\inserttitle},
+  pdfstartview={FitH}
+}
+
+
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+
+% remove institution from footline 
+\setbeamertemplate{footline}%{infolines theme}
+{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+\usebeamerfont{author in head/foot}\insertshortauthor%~~(\insertshortinstitute)
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+\usebeamerfont{date in head/foot}%\insertshortdate{}\hspace*{2em}
+\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+
+
+%\useinnertheme{default}
+\setbeamertemplate{items}[default]
+% remove navigation icons in the bottom right
+\setbeamertemplate{navigation symbols}{} 
+
+
+\titlegraphic{
+  \includegraphics[height=2cm]{hk-logo.png}
+}
+\logo{\includegraphics[height=0.8cm]{hk-logo.png}}
+
+
+\title[Python Workshop]{Hackinggroup -- Python Workshop}
+\subtitle{A tale about dutch ducks with a fable for British comedy}
+\author[Thomas Kastner, Michael Rodler]{Thomas Kastner\and Michael Rodler}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Table of contents -- Wos ma heit mochan}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\frametitle{Introduction -- Wer san denn de?}
+
+\begin{block}{Michael Rodler}
+\begin{itemize}
+\item aka f0rk, f0rki, f0rkmaster, Gabel, etc.
+\item Student SIB09
+\item 3 years coding Python for Fun
+\item 3 months coding Python for Profit
+\end{itemize}
+\end{block}
+
+\begin{block}{Thomas Kastner}
+
+\end{block}
+
+\end{frame}
+
+
+\section{Syntax}
+\subsection{Kontrolstrukturen}
+\subsection{Variablen und Standard Datentypen}
+\subsection{Funktionen}
+
+\section{Warum Python awesome ist!}
+\subsection{Coding Style}
+\subsection{Code like a Pythonista} % Beispiele aus der "Code like a Pythonista" praesentation
+\subsection{ALLES ist ein Objekt}
+\subsection{Zen of Python} % import this
+
+\section{Standard Library}
+\subsection{Module importieren}
+\subsection{sys} % parameter einlesen, basic informationen auslesen
+\subsection{os, os.path} %(path handling, 
+\subsection{Hilfe zur Selbsthilfe}  % (help(), pydoc, online doku)
+
+\section{Input/Output } % auf Dateien, stdin/out/err
+% Beispiel
+\section{re Modul}
+% Beispiel
+
+\end{document}
