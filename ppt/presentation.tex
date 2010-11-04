@@ -23,7 +23,7 @@
 \usetheme{default}
 \beamertemplatenavigationsymbolsempty
 \titlegraphic{\includegraphics[height=2cm]{hk-logo.png}}
-\logo{\includegraphics[height=1cm]{hk-logo.png}}
+%\logo{\includegraphics[height=1cm]{hk-logo.png}}
 
 \title[Python Workshop]{Hackinggroup -- Python Workshop}
 \subtitle{A tale about dutch ducks with a fable for British comedy}
@@ -86,7 +86,7 @@
 
 \subsection{Control statements}
 \begin{frame}[fragile]
-    \frametitle{what if?}
+    \frametitle{what if? -- A if-Schleife}
     
     \begin{exampleblock}{python}
     \begin{lstlisting}
@@ -109,16 +109,50 @@
     \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{for as long as I live ...}
+    
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> for word in ["python", "is", "awesome"]:
+...     print word
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> for word in "python is so fucking awesome".split():
+...     print word
+
+>>> for character in "python is so fucking awesome":
+...     print character
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{block}{Iteration}
+    \end{block}
+\end{frame}
+
 \subsection{About functions \& methods}
 
-\section{Warum Python awesome ist!}
+\section{Why is Python this awesome?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{Why is Python this awesome? -- Warum brauch i sowas?}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> import antigravity
+    \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
 \subsection{Coding style}
 \subsection{Code like a pythonista} 
     % Beispiele aus der "Code like a Pythonista" praesentation
 \subsection{ALLES ist ein Objekt}
 \subsection{Zen of Python} 
-\begin{frame}[fragile]
+\begin{frame}[fragile, shrink]
     \frametitle{Zen of Python}
 
     \begin{exampleblock}{python}
@@ -126,6 +160,22 @@
 >>> import this
     \end{lstlisting}
     \end{exampleblock}
+
+    \begin{block}{The Zen of Python, by Tim Peters}
+    \scriptsize
+    \emph{
+    Beautiful is better than ugly.\\
+    Explicit is better than implicit.\\
+    Simple is better than complex.\\
+    Complex is better than complicated.\\
+    Flat is better than nested.\\
+    Sparse is better than dense.\\
+    Readability counts.\\
+    Special cases aren't special enough to break the rules.\\
+    Although practicality beats purity.\\
+    ...}
+    \end{block}
+
 \end{frame}
     % import this
 
