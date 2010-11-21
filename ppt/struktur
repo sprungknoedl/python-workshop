@@ -1,6 +1,6 @@
 === 1. Termin ===
 
-Vorraussetzungen: Grundlagen Programmieren (nur imperativ kein OOP)
+Vorraussetzungen: Grundlagen Programmieren (nur imperativ, kein OOP)
 
 0. Start, Erklaerung des heutigen Ziels
   0.1 "import antigravity"
@@ -10,9 +10,10 @@ Vorraussetzungen: Grundlagen Programmieren (nur imperativ kein OOP)
   1.3 Funktionen
 2. Warum Python Awesome ist:
   2.1 Coding Style
-  2.2 "Code like a Pythonista" Beispiele
-  2.3 ALLES ist ein Objekt
-  2.4 Zen of Python, "import this"
+  2.2 from __future__ import braces
+  2.3 "Code like a Pythonista" Beispiele
+  2.4 ALLES ist ein Objekt
+  2.5 Zen of Python, "import this"
 3. Standard Library
   3.1 Module importieren
   3.2 sys (parameter einlesen, basic informationen auslesen)
@@ -33,14 +34,14 @@ Verweis auf "How to speak HTTP" Slides
   - EVERYTHING is an object
   - public/private
   - dynamic typing, duck typing (or why java-style interfaces suck)
-  - Vererbung (multiple --> Recherchieren wie)
+  - Vererbung (multiple --> as said, first parent class wins)
   - Klassen definieren
     - Konstruktor __init__(self, ...)
     - special methods (__*__)
-* cheeseshop, easy_install
+* cheeseshop, easy_install, pip
 * Advanced/Third-Party Libraries
-  - SSH paramiko
-  - HTTP urllib mechanize
+  - SSH: paramiko
+  - HTTP: mechanize
   - kurz anschneiden
     - BeautifulSoup
     - DB API
@@ -57,11 +58,16 @@ am 1.Termin
   1.2 Vorschlaege einholen, wie mans besser machen koennte
   1.3 mit Regex
   1.4 uebergrosse Datei einlesen, so dass es mal kracht, "Aus Fehlern lernt man"
-2. Zeichenweise einlesen
+2. Zeilenweise einlesen
 3. Anmerkungen um selbst weiterzuarbeiten:
     Emails ueber mehrere Zeilen
-    obfuscated Emails erkenne (mehrere Regex)
+    obfuscated Emails erkennen (mehrere Regex)
+		user (at) example (dot) com
+		user at example dot com
+		...
 
 am 2.Termin
 4. Website fetchen mit urllib
 5. Website crawlen mit mechanize
+6. Ergebnisse per SSH/SFTP auf server speicher?
+6. Ergebnisse im IRC posten (BOTNETT!!!! :) )?

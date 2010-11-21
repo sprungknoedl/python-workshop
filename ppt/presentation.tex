@@ -1,0 +1,199 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{
+    language=Python,
+    basicstyle=\scriptsize,
+    breakatwhitespace=true,breaklines=true,%
+    tabsize=2, % Tabulatorbreite
+}
+
+\hypersetup{
+    pdftitle={\inserttitle},
+    pdfsubject={\inserttitle},
+    pdfauthor={\insertauthor},
+    pdfkeywords={\inserttitle},
+    pdfstartview={FitH}
+}
+
+\usetheme{default}
+\beamertemplatenavigationsymbolsempty
+\titlegraphic{\includegraphics[height=2cm]{hk-logo.png}}
+%\logo{\includegraphics[height=1cm]{hk-logo.png}}
+
+\title[Python Workshop]{Hackinggroup -- Python Workshop}
+\subtitle{A tale about dutch ducks with a fable for British comedy}
+\author[Thomas Kastner, Michael Rodler]{Thomas Kastner\and Michael Rodler}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Table of contents -- Wos ma heit mochn}
+    \tableofcontents
+\end{frame}
+
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{Introduction -- Wer san ma denn?}
+
+    \begin{block}{Michael Rodler}
+    \begin{itemize}
+        \item aka f0rk, f0rki, f0rkmaster, Gabel, etc.
+        \item Student SIB09
+        \item 3 years coding python for fun
+        \item 3 months coding python for profit
+    \end{itemize}
+    \end{block}
+
+    \begin{block}{Thomas Kastner}
+    \begin{itemize}
+        \item aka br3z3l, tom
+        \item Student SIB08
+        \item 4 years coding python for fun
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\section{Syntax}
+%%%%%%%%%%%%%%%%
+\subsection{Hello World}
+\begin{frame}[fragile]
+    \frametitle{Every tutorial has this -- Braucht ma oafoch}
+    \begin{block}{Wikipedia about "Hello World!"}
+    A "Hello World" program is a computer program which prints out "Hello World!" on a display device. It is used in many introductory tutorials for teaching a programming language.
+    \end{block}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> print "Hello World!" 
+    \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{About variables \& types}
+
+\subsection{Control statements}
+\begin{frame}[fragile]
+    \frametitle{what if? -- A if-Schleife}
+    
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> if (True or False):
+...     print "win"
+... else:
+...     print "fail"
+...
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{block}{Truth value testing}
+    Any object can be tested for truth value. The following values are considered \emph{false}:
+    \begin{itemize}
+        \item None, False, 0
+        \item any empty sequence, for example: "", (), []
+        \item any empty mapping, for example: \{\}
+    \end{itemize}
+    All other values are considered \emph{true}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{for as long as I live ...}
+    
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> for word in ["python", "is", "awesome"]:
+...     print word
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> for word in "python is so fucking awesome".split():
+...     print word
+
+>>> for character in "python is so fucking awesome":
+...     print character
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{block}{Iteration}
+    \end{block}
+\end{frame}
+
+\subsection{About functions \& methods}
+
+\section{Why is Python this awesome?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{Why is Python this awesome? -- Warum brauch i sowas?}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> import antigravity
+    \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Coding style}
+\subsection{Code like a pythonista} 
+    % Beispiele aus der "Code like a Pythonista" praesentation
+\subsection{ALLES ist ein Objekt}
+\subsection{Zen of Python} 
+\begin{frame}[fragile, shrink]
+    \frametitle{Zen of Python}
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> import this
+    \end{lstlisting}
+    \end{exampleblock}
+
+    \begin{block}{The Zen of Python, by Tim Peters}
+    \scriptsize
+    \emph{
+    Beautiful is better than ugly.\\
+    Explicit is better than implicit.\\
+    Simple is better than complex.\\
+    Complex is better than complicated.\\
+    Flat is better than nested.\\
+    Sparse is better than dense.\\
+    Readability counts.\\
+    Special cases aren't special enough to break the rules.\\
+    Although practicality beats purity.\\
+    ...}
+    \end{block}
+
+\end{frame}
+    % import this
+
+\section{Standard Library}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Importing modules}
+\subsection{sys} 
+    % parameter einlesen, basic informationen auslesen
+\subsection{os, os.path} 
+    % path handling, 
+\subsection{RTFM -- Hilfe zur Selbsthilfe}  
+    %  help(), pydoc, online doku 
+
+\section{Input/Output } 
+    % auf Dateien, stdin/out/err
+
+% Beispiel
+\section{re Modul}
+% Beispiel
+
+\end{document}
