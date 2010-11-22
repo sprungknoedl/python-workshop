@@ -1,5 +1,6 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
 \usepackage{graphicx}
 \usepackage{lmodern}
 \usepackage{listings}
@@ -10,6 +11,7 @@
     basicstyle=\scriptsize,
     breakatwhitespace=true,breaklines=true,%
     tabsize=2, % Tabulatorbreite
+    showstringspaces=false,
 }
 
 \hypersetup{
@@ -66,13 +68,24 @@
 \end{frame}
 
 
+\begin{frame}[fragile]
+	\frametitle{GO! -- TU ES!}
+	\pause
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> import antigravity
+    \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+
 \section{Syntax}
 %%%%%%%%%%%%%%%%
 \subsection{Hello World}
 \begin{frame}[fragile]
     \frametitle{Every tutorial has this -- Braucht ma oafoch}
-    \begin{block}{Wikipedia about "Hello World!"}
-    A "Hello World" program is a computer program which prints out "Hello World!" on a display device. It is used in many introductory tutorials for teaching a programming language.
+    \begin{block}{Wikipedia about ``Hello World!''}
+    A ``Hello World'' program is a computer program which prints out ``Hello World!'' on a display device. It is used in many introductory tutorials for teaching a programming language.
     \end{block}
 
     \begin{exampleblock}{python}
@@ -83,10 +96,78 @@
 \end{frame}
 
 \subsection{About variables \& types}
+\begin{frame}[fragile]
+	\frametitle{About variables \& types}
+	\begin{alertblock}{dynamic strong typed}
+	\begin{itemize}
+	\item dynamic -- any variable, any type
+	\item strong -- no magic type casting
+	\end{itemize}
+	\end{alertblock}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = 42
+>>> x = "If it looks like a duck and quacks like a duck, it must be a duck."
+>>> x = ["beer", "wine", "cheese"]
+	\end{lstlisting}
+	\end{exampleblock}
+
+	\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = "duck" + 42
+TypeError: cannot concatenate 'str' and 'int' objects
+
+>>> x = "duck" + str(42)
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{list, dict, tuple -- Eh ois des söbe?}
+	
+	%TODO: insert pauses between code lines
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> party = ["cheese", "wine"]
+>>> party.append("girls")
+>>> party[0] = "beer"
+>>> party += ["schnops", "punsch"]
+>>> xmasparty = x[2:]
+>>> print xmasparty
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = {"awesome": "barney", 42: "the answer"}
+>>> x["awesome"]
+>>> x[42]
+	\end{lstlisting}
+	\end{exampleblock}
+
+	\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = (13, 37)
+>>> a, b = x
+>>> b, a = a, b
+	\end{lstlisting}
+	\end{exampleblock}
+	%LIVE:
+	% Unterschied Listen/Tupel Immutable vs. Mutable
+	% Zuweisung an Tupel Element x[1] = "no way!"
+	% tupel als dict key {(1,2): "fu"}
+\end{frame}
+
 
 \subsection{Control statements}
 \begin{frame}[fragile]
-    \frametitle{what if? -- A if-Schleife}
+    \frametitle{what \textbf{if}? -- A if-Schleife}
     
     \begin{exampleblock}{python}
     \begin{lstlisting}
@@ -97,6 +178,8 @@
 ...
     \end{lstlisting}
     \end{exampleblock}
+    
+	\pause
 
     \begin{block}{Truth value testing}
     Any object can be tested for truth value. The following values are considered \emph{false}:
@@ -110,7 +193,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{for as long as I live ...}
+    \frametitle{\textbf{for} as long as I live ...}
     
     \begin{exampleblock}{python}
     \begin{lstlisting}
@@ -129,28 +212,63 @@
     \end{lstlisting}
     \end{exampleblock}
 
+	\pause
+
     \begin{block}{Iteration}
+    \begin{itemize}
+    \item returns next element, each round
+    \item every python container type
+    \item yo mama's objects %(must implement the python iterator protocol)
+    \end{itemize}
     \end{block}
 \end{frame}
 
-\subsection{About functions \& methods}
-
-\section{Why is Python this awesome?}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-    \frametitle{Why is Python this awesome? -- Warum brauch i sowas?}
+	\frametitle{Curiosity killed the cat, but for a \textbf{while} I was a suspect.} %Steven Wright quote (comedian)
 
-    \begin{exampleblock}{python}
-    \begin{lstlisting}
->>> import antigravity
-    \end{lstlisting}
-    \end{exampleblock}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> while not False:
+...     print "print"
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> while state != "legendary":
+...     wait_for_it()
+	\end{lstlisting}
+	\end{exampleblock}
+
+	\pause
+	
+	\begin{block}{jumping}
+	you can also \textbf{break} and \textbf{continue}.
+	\end{block}
 \end{frame}
 
+\subsection{About functions \& methods}
+\begin{frame}[fragile]
+	\frametitle{About functions \& methods}
+	Where is the fucking difference? \pause -- There is none
+	\begin{exampleblock}
+	
+	\end{exampleblock}
+
+\end{frame}
+
+\section{That's why Python is awesome?}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Coding style}
+
 \subsection{Code like a pythonista} 
     % Beispiele aus der "Code like a Pythonista" praesentation
+
 \subsection{ALLES ist ein Objekt}
+
+
 \subsection{Zen of Python} 
 \begin{frame}[fragile, shrink]
     \frametitle{Zen of Python}
