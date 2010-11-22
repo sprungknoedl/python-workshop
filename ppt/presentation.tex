@@ -11,7 +11,7 @@
     basicstyle=\scriptsize,
     breakatwhitespace=true,breaklines=true,%
     tabsize=2, % Tabulatorbreite
-    showstringspaces=false,
+    showstringspaces=false
 }
 
 \hypersetup{
@@ -103,6 +103,7 @@
 	\item dynamic -- any variable, any type
 	\item strong -- no magic type casting
 	\end{itemize}
+	\pause
 	\end{alertblock}
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -214,7 +215,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 
 	\pause
 
-    \begin{block}{Iteration}
+    \begin{block}{Iterating over what?}
     \begin{itemize}
     \item returns next element, each round
     \item every python container type
@@ -252,24 +253,33 @@ TypeError: cannot concatenate 'str' and 'int' objects
 \subsection{About functions \& methods}
 \begin{frame}[fragile]
 	\frametitle{About functions \& methods}
-	Where is the fucking difference? \pause -- There is none
-	\begin{exampleblock}
-	
+	Where is the fucking difference? \pause -- There actually is none \pause
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> def doSomething(arg):
+... 	print "function args: " + str(arg)
+... 	return str(arg)
+...
+>>> x = doSomething("for the lulz")
+	\end{lstlisting}
+	\pause	
+	\begin{lstlisting}
+>>> def func(arg0, arg1="default", *args, **kwargs):
+... 	print "arg0 =", arg0
+... 	print "arg1 =", arg1
+... 	print "args =", args
+... 	print "kwargs =", kwargs
+...
+>>> func(1, 2, 3, 4, 5, 6, john="doe", fu="bar")
+>>> func(1, we="don't need", no="overloading!")
+	\end{lstlisting}
 	\end{exampleblock}
-
 \end{frame}
 
 \section{That's why Python is awesome?}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Coding style}
 
-\subsection{Code like a pythonista} 
-    % Beispiele aus der "Code like a Pythonista" praesentation
-
-\subsection{ALLES ist ein Objekt}
-
-
-\subsection{Zen of Python} 
+\subsection{Zen of Python -- by Tim Peters} 
 \begin{frame}[fragile, shrink]
     \frametitle{Zen of Python}
 
@@ -279,7 +289,6 @@ TypeError: cannot concatenate 'str' and 'int' objects
     \end{lstlisting}
     \end{exampleblock}
 
-    \begin{block}{The Zen of Python, by Tim Peters}
     \scriptsize
     \emph{
     Beautiful is better than ugly.\\
@@ -291,12 +300,192 @@ TypeError: cannot concatenate 'str' and 'int' objects
     Readability counts.\\
     Special cases aren't special enough to break the rules.\\
     Although practicality beats purity.\\
-    ...}
-    \end{block}
+    Errors should never pass silently.\\
+	Unless explicitly silenced.\\
+	In the face of ambiguity, refuse the temptation to guess.\\
+	There should be one -- and preferably only one -- obvious way to do it.\\
+	Although that way may not be obvious at first unless you're Dutch.\\
+	Now is better than never.\\
+	Although never is often better than *right* now.\\
+	If the implementation is hard to explain, it's a bad idea.\\
+	If the implementation is easy to explain, it may be a good idea.\\
+	Namespaces are one honking great idea -- let's do more of those!
+    }
 
 \end{frame}
-    % import this
 
+\subsection{Coding style}
+\begin{frame}[fragile]
+	\frametitle{python coding style -- actually a religion}
+	Read the Python Enhancement Proposal 0008 -- \url{http://www.python.org/dev/peps/pep-0008/}
+	\begin{block}{important}
+	\begin{itemize}
+	\item 4 whitespaces indentation (deprecated: tab-only)
+	\item whitespaces around operators but not around brackets
+	\item use docstrings!
+	\item naming conventions
+		\begin{itemize}
+		\item package and module -- all lowercase
+		\item class -- CapWords/CamelCase
+		\item variables and functions -- all lowercase with underscore as word seperator
+		\end{itemize}
+	\item comparison with Singletons (e.g. None, True) use \emph{is} keyword
+	\end{itemize}
+	\end{block}
+
+\end{frame}
+
+\subsection{Code like a pythonista} 
+    % Beispiele aus der "Code like a Pythonista" praesentation
+\begin{frame}[fragile]
+	\frametitle{code like a pythonista}
+    ``Programs must be written for people to read, and only incidentally for machines to execute.'' -- Abelson \& Sussman\\
+	\pause    
+    
+    \begin{alertblock}{not pythonic}
+    \begin{lstlisting}
+colors = ['red', 'blue', 'green', 'yellow']
+result = ''
+for s in colors:
+    result += s
+    \end{lstlisting}
+    \end{alertblock}
+  	\pause
+    \begin{exampleblock}{pythonic}
+    \begin{lstlisting}
+result = ''.join(colors)
+result = ', '.join(colors)
+    \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{code like a pythonista}
+	
+	``Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'' -- Brian W. Kernighan
+	\pause
+
+	\begin{alertblock}{not pythonic}
+	\begin{lstlisting}
+for key in d.keys():
+    print key
+
+if d.has_key(key):
+    do_something_with(d[key])
+    \end{lstlisting}
+	\end{alertblock}
+  	\pause	
+	\begin{exampleblock}{pythonic}
+	\begin{lstlisting}
+for key in d:
+    print key
+
+if key in d:
+    do_something_with(d[key])
+    \end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{code like a pythonista}
+	
+	\begin{alertblock}{not pythonic}
+	\begin{lstlisting}
+if x == True:
+    do_something()
+
+if len(items) != 0:
+    do_something()
+    
+if items != []: # yuck!
+    do_something()
+    \end{lstlisting}
+	\end{alertblock}
+ 	\pause
+	\begin{exampleblock}{pythonic}
+	\begin{lstlisting}
+if x:
+    do_something()
+    
+if items:
+    do_something()    
+    \end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{code like a pythonista}
+
+	\begin{exampleblock}{pythonic}
+	\begin{lstlisting}
+>>> items = "zero one two three".split()
+>>> print items
+    \end{lstlisting}
+	\end{exampleblock}
+  	\pause
+	\begin{alertblock}{not pythonic}
+	\begin{lstlisting}
+index = 0
+for item in items:
+    print index, item
+    index += 1
+
+for i in range(len(items)):
+    print i, items[i]
+    \end{lstlisting}
+	\end{alertblock}
+  	\pause	
+	\begin{exampleblock}{pythonic}
+    \begin{lstlisting}
+for (index, item) in enumerate(items):
+    print index, item
+    \end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{code like a pythonista}
+	
+	\begin{alertblock}{bad idea}
+	\begin{lstlisting} 
+def bad_append(new_item, a_list=[]):
+    a_list.append(new_item)
+    return a_list
+    \end{lstlisting}% will always return the SAME list object
+	\end{alertblock}
+ 	\pause
+	\begin{exampleblock}{good idea}
+	\begin{lstlisting}
+def good_append(new_item, a_list=None):
+    if a_list is None:
+        a_list = []
+    a_list.append(new_item)
+    return a_list
+    \end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+
+\subsection{ALLES ist ein Objekt}
+
+\begin{frame}[fragile]
+	\frametitle{everything is an object}
+	actually:
+	\begin{itemize}
+	\item no primitve types, pure OOP
+	\item no literals, only references to singleton objects
+	\item doesn't make much difference
+	\end{itemize}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = 21
+>>> x += 21
+>>> x = x.__add__(21)
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+	
 \section{Standard Library}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Importing modules}
@@ -313,5 +502,16 @@ TypeError: cannot concatenate 'str' and 'int' objects
 % Beispiel
 \section{re Modul}
 % Beispiel
+
+
+\begin{frame}
+	\frametitle{References}
+	\begin{thebibliography}{3}
+	\bibitem{kopf} the authors' epic python knowledge
+	\bibitem{pydoc} \url{http://docs.python.org/}
+	\bibitem{codelikeapythonista} Code like a Pythonista -- \url{http://python.net/~goodger/projects/pycon/2007/idiomatic/presentation.html}
+	\bibitem{diveintopython} \url{http://diveintopython.org/}
+	\end{thebibliography}
+\end{frame}
 
 \end{document}
