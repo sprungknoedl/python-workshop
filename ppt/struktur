@@ -9,11 +9,11 @@ Vorraussetzungen: Grundlagen Programmieren (nur imperativ, kein OOP)
   1.2 Kontrolstrukturen
   1.3 Funktionen
 2. Warum Python Awesome ist:
+  2.5 Zen of Python, "import this"
   2.1 Coding Style
   2.2 from __future__ import braces
   2.3 "Code like a Pythonista" Beispiele
   2.4 ALLES ist ein Objekt
-  2.5 Zen of Python, "import this"
 3. Standard Library
   3.1 Module importieren
   3.2 sys (parameter einlesen, basic informationen auslesen)

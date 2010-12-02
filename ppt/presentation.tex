@@ -323,7 +323,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	Read the Python Enhancement Proposal 0008 -- \url{http://www.python.org/dev/peps/pep-0008/}
 	\begin{block}{important}
 	\begin{itemize}
-	\item 4 whitespaces indentation (deprecated: tab-only)
+	\item 4 whitespaces indentation (deprecated way: tab-only)
 	\item whitespaces around operators but not around brackets
 	\item use docstrings!
 	\item naming conventions
@@ -472,7 +472,7 @@ def good_append(new_item, a_list=None):
 \subsection{ALLES ist ein Objekt}
 
 \begin{frame}[fragile]
-	\frametitle{everything is an object}
+	\frametitle{everything is an object -- ois, wirkli OIS}
 	actually:
 	\begin{itemize}
 	\item no primitve types, pure OOP
@@ -492,10 +492,109 @@ def good_append(new_item, a_list=None):
 \section{Standard Library}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Importing modules}
+
+\begin{frame}[fragile]
+	\frametitle{importing stuff}
+	We already know:
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import this
+	\end{lstlisting}
+	\end{exampleblock}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import os.path
+>>> from random import randint
+>>> from threading import *
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 \subsection{sys} 
     % parameter einlesen, basic informationen auslesen
+\begin{frame}[fragile]
+    \frametitle{the sys module}
+    \begin{itemize}
+    \item python built-in library
+    \item provides basic system information
+    \end{itemize}
+    \pause
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+>>> import sys
+>>> dir(sys)
+    \end{lstlisting}
+    \end{exampleblock}
+    for what do i ACTUALLY use it?    
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{the sys module}
+	
+	Common use:
+
+    \begin{exampleblock}{python}
+    \begin{lstlisting}
+#!/usr/bin/python
+
+import sys
+
+if sys.argv[1] == "-h":
+    print "Usage:", sys.argv[0], "-p"
+    sys.exit(1)
+elif sys.argv[1] == "-p" and len(sys.argv) == 3:
+    do_stuff_with(sys.argv[2])
+    sys.exit() # == sys.exit(0)
+else:
+    print "Usage:", sys.argv[0], "-p"
+    sys.exit(1)
+	\end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
 \subsection{os, os.path} 
-    % path handling, 
+    % path handling,
+\begin{frame}[fragile]
+	\frametitle{the os module}
+	\begin{itemize}
+	\item Miscellaneous operating system interfaces
+	\item mostly wrapper for C syscall functions
+	\end{itemize}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import os
+>>> os.getpid()
+>>> os.chdir("/usr")
+>>> os.getcwd()
+>>> print os.linesep
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{the os.path module}
+	
+	\begin{itemize}
+	\item Common pathname manipulations
+	\item actually several different implementations
+	\begin{itemize}
+		\item posixpath for UNIX-style paths
+		\item ntpath for Windows paths
+		\item macpath for old-style MacOS paths
+		\item os2emxpath for OS/2 EMX paths
+	\end{itemize}
+	\end{itemize}
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import os.path
+>>> os.path.exists(".")
+>>> os.path.getmtime("./somefile")
+>>> os.path.abspath(os.getcwd() + os.path.sep + "somedir" + os.path.sep + "somefile")
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 \subsection{RTFM -- Hilfe zur Selbsthilfe}  
     %  help(), pydoc, online doku 
 
