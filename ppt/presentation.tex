@@ -674,26 +674,21 @@ else:
     
 \begin{frame}[fragile]
 	\frametitle{Input/Output}
+	\framesubtitle{writing to screen}
 	
-	We already know how to write to \emph{stdout} with \emph{print}. We can also use \emph{stderr}.
+	We already know how to write to \emph{stdout} with \texttt{print}. We can also use \emph{stderr}.
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
->>> print "I can't go, I've got this thing...."
 >>> import sys
->>> sys.stdout.write("What thing?\n")
->>> sys.stderr.write("...")
+>>> print "I can't go, I've got this thing...."
 >>> print >>sys.stderr, "a Penis."
 	\end{lstlisting}
 	\end{exampleblock}
-\pause
-	\begin{itemize}
-	\item \emph{print} automagically adds line endings, use it for text
-	\item \emph{write} does not, don't use it (except for binary data)
-	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Input/Output}
+	\framesubtitle{reading from user}
 	
 	Reading from \emph{stdin} is quite easy.
 	\begin{exampleblock}{python}
@@ -702,23 +697,37 @@ else:
 >>> y = raw_input("Please input y: ")
 	\end{lstlisting}
 	\end{exampleblock}
-	Where's the difference? Try this:
+	
 \pause
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> x = input("x: ")
-x: 42
->>> y = raw_input("y: ")
-y: 42
->>> type(x); type(y)
-	\end{lstlisting}
-	\end{exampleblock}
-\pause
+
+	\begin{block}{Where's the difference?}
 	\begin{itemize}
-	\item \emph{input} parses the values, and returns the most suitable type
-	\item \emph{raw\_input} always returns a string
+	\item \texttt{raw\_input} always returns a string 
+\pause
+	\item \texttt{input} evaluates the input \pause $ \rightarrow $ \textbf{DANGEROUS!}
 	\end{itemize}
+	\end{block}
+
+\pause
+
+	\begin{alertblock}{python}
+	\begin{lstlisting}
+>>> input("bad: ")
+bad: __import__('os').getcwd()
+	\end{lstlisting}
+	\end{alertblock}
+
 \end{frame}
+
+%\subsection{Files}
+
+%\begin{frame}{fragile}
+%	\frametitle{Input/Output}
+%	\framesubtitle{reading/writing to files}
+%\end{frame}
+
+%>>> sys.stdout.write("What thing?\n")
+%>>> sys.stderr.write("...")
 
 %%% \begin{Beispiel}
 %%% src/bsp1.py
