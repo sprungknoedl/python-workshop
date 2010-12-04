@@ -102,12 +102,12 @@
 \subsection{About variables \& types}
 \begin{frame}[fragile]
 	\frametitle{About variables \& types}
-	\begin{alertblock}{strong dynamic type system}
+	\begin{block}{strong dynamic type system}
 	\begin{itemize}
 	\item dynamic -- any variable, any type
 	\item strong -- no magic type casting
 	\end{itemize}
-	\end{alertblock}
+	\end{block}
 \pause
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -341,19 +341,19 @@ TypeError: cannot concatenate 'str' and 'int' objects
 \subsection{Coding style}
 \begin{frame}[fragile]
 	\frametitle{python coding style -- actually a religion}
-	Read the Python Enhancement Proposal 0008 -- \url{http://www.python.org/dev/peps/pep-0008/}
-	\begin{block}{important}
+	\url{http://www.python.org/dev/peps/pep-0008/}
+	\begin{block}{Important}
 	\begin{itemize}
-	\item 4 whitespaces indentation (deprecated way: tab-only)
+	\item 4 whitespaces indentation
 	\item whitespaces around operators but not around brackets
 	\item use docstrings!
 	\item naming conventions
 		\begin{itemize}
-		\item package and module -- all lowercase
-		\item class -- CapWords/CamelCase
+		\item packages and modules -- all lowercase
+		\item classes -- CapWords/CamelCase
 		\item variables and functions -- all lowercase with underscore as word seperator
 		\end{itemize}
-	\item comparison with Singletons (e.g. None, True) use \emph{is} keyword
+	\item comparison with Singletons (e.g. None, True) use \texttt{is} keyword
 	\end{itemize}
 	\end{block}
 
@@ -558,18 +558,19 @@ def good_append(new_item, a_list=None):
     \begin{exampleblock}{python}
     \begin{lstlisting}
 #!/usr/bin/python
-
 import sys
 
-if sys.argv[1] == "-h":
-    print "Usage:", sys.argv[0], "-p"
+def usage():
+    print "Usage: %s -p" % sys.argv[0]
     sys.exit(1)
-elif sys.argv[1] == "-p" and len(sys.argv) == 3:
+
+if sys.argv[1] == "-p" and len(sys.argv) == 3:
     do_stuff_with(sys.argv[2])
-    sys.exit() # == sys.exit(0)
+    sys.exit()
+elif sys.argv[1] == "-h":
+    usage()
 else:
-    print "Usage:", sys.argv[0], "-p"
-    sys.exit(1)
+    usage()
 	\end{lstlisting}
     \end{exampleblock}
 \end{frame}
@@ -719,34 +720,78 @@ bad: __import__('os').getcwd()
 
 \end{frame}
 
-%\subsection{Files}
 
-%\begin{frame}{fragile}
-%	\frametitle{Input/Output}
-%	\framesubtitle{reading/writing to files}
-%\end{frame}
+\subsection{Reading and Writing Files}
 
-%>>> sys.stdout.write("What thing?\n")
-%>>> sys.stderr.write("...")
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+	\framesubtitle{writing and reading files}
+
+	But we can also write to files. To open a file you can use the built-in \texttt{open} function:
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> help(open)
+>>> f = open("bigbang.txt", "w+")
+>>> f.readline()
+'What am I supposed to do?'
+>>> f.write("Well, have you considered telling her how you feel?\n")
+>>> print >>f, "Leonard, I'm a physicist, not a hippie."
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+	
+	\begin{block}{File Modes}
+	\begin{itemize}
+		\item \texttt{r}, \texttt{w}, \texttt{a} $ \rightarrow $ read, write, append
+		\item \texttt{+} $ \rightarrow $ append to mode for r/w
+		\item \texttt{b} $ \rightarrow $ append to mode for binary data
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+	\framesubtitle{a much better way to work with files}
+	\emph{New in version 2.5}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> with open("mister.big", "r") as f:
+...     content = f.read()
+...     process(content)
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{block}{What happens?}
+	\begin{itemize}
+		\item opens file as it would normaly
+		\item executes body
+		\item closes file (even if errors occured!)
+	\end{itemize}
+	\end{block}
+\end{frame}
 
 %%% \begin{Beispiel}
 %%% src/bsp1.py
 \begin{frame}[fragile]
 	\frametitle{Example -- A Beispü}
 	
-	ToDo:
+	\begin{block}{Exercises}
 	\begin{itemize}
-	\item get a sentence and a word from user
+	\item[\checkmark] get a sentence and a word from user
 		\begin{itemize}
-		\item read from input and/or command line parameters
+		\item[\checkmark] read from input and/or command line parameters
 		\end{itemize}
-	\item split user input in words
-	\item filter punctuation
-	\item search for a specific word in user input (NOT case sensitive)
+	\item[\checkmark] split user input in words
+	\item[\checkmark] filter punctuation
+	\item[\checkmark] search for a specific word in user input (NOT case sensitive)
 		\begin{itemize}
-		\item returning boolean
+		\item[\checkmark] returning boolean
 		\end{itemize}
 	\end{itemize}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -767,46 +812,6 @@ bad: __import__('os').getcwd()
 \end{frame}
 %%% \end{Beispiel}
 
-\subsection{Writing and Reading Files}
-
-\begin{frame}[fragile]
-	\frametitle{Input/Output}
-
-	But we can also write to files. To open a file you can use the built-in \emph{open} function:
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> f = open("testout.txt", "w")
-	\end{lstlisting}
-	\end{exampleblock}
-\pause
-	File Modes: ``w'', ``r'', ``a''\\
-	append ``+'' for simultaneous r/w, \\
-	``b'' for binary document (m\$ win only)
-\end{frame}
-
-
-\begin{frame}[fragile]
-	\frametitle{Input/Output}
-	Writing to a file:
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> f.write("What am I supposed to do?\n")
->>> print >>f, "Well, have you considered telling her how you feel?"
->>> sys.stdout = f
->>> print "Leonard, I'm a physicist, not a hippie."
-	\end{lstlisting}
-	\end{exampleblock}
-\pause
-	Reading from a file:
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> with open("myfile", "r") as f:
-...     txt = f.read()
-...     do_something_with(txt)
-	\end{lstlisting}
-	\end{exampleblock}
-\end{frame}
-
 %%% \begin{beispiel} %%%
 
 \begin{frame}[fragile]
@@ -814,9 +819,9 @@ bad: __import__('os').getcwd()
 	
 	ToDo:
 	\begin{itemize}
-	\item read a text file
-	\item search text file for email adresses
-	\item write list of email adresses to another file
+	\item[\checkmark] read a text file
+	\item[\checkmark] search text file for email adresses
+	\item[\checkmark] write list of email adresses to another file
 	\end{itemize}
 \end{frame}
 
