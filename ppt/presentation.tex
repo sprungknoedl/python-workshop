@@ -41,12 +41,7 @@
     \titlepage
 \end{frame}
 
-\begin{frame}
-    \frametitle{Table of contents -- Wos ma heit mochn}
-    \tableofcontents
-\end{frame}
-
-\section{Introduction}
+\section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -70,6 +65,11 @@
     \end{block}
 \end{frame}
 
+
+\begin{frame}{allowpagebreaks}
+    \frametitle{Table of contents -- Wos ma heit mochn}
+    \tableofcontents
+\end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{GO! -- TU ES!}
@@ -275,6 +275,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 ...
 >>> func(1, 2, 3, 4, 5, 6, john="doe", fu="bar")
 >>> func(1, we="don't need", no="overloading!")
+>>> func(0)
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
@@ -501,6 +502,9 @@ def good_append(new_item, a_list=None):
 >>> import this
 	\end{lstlisting}
 	\end{exampleblock}
+
+\pause
+
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
 >>> import os.path
@@ -518,21 +522,19 @@ def good_append(new_item, a_list=None):
     \item python built-in library
     \item provides basic system information
     \end{itemize}
-    \pause
+
     \begin{exampleblock}{python}
     \begin{lstlisting}
 >>> import sys
 >>> dir(sys)
     \end{lstlisting}
     \end{exampleblock}
-    for what do i ACTUALLY use it?    
+    %for what do i ACTUALLY use it?    
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{the sys module}
-	
-	Common use:
-
+	\framesubtitle{Common use}
     \begin{exampleblock}{python}
     \begin{lstlisting}
 #!/usr/bin/python
@@ -558,7 +560,7 @@ else:
 	\frametitle{the os module}
 	\begin{itemize}
 	\item Miscellaneous operating system interfaces
-	\item mostly wrapper for C syscall functions
+	\item Mostly wrapper for C syscall functions
 	\end{itemize}
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -576,12 +578,12 @@ else:
 	
 	\begin{itemize}
 	\item Common pathname manipulations
-	\item actually several different implementations
+	\item Actually several different implementations
 	\begin{itemize}
-		\item posixpath for UNIX-style paths
-		\item ntpath for Windows paths
-		\item macpath for old-style MacOS paths
-		\item os2emxpath for OS/2 EMX paths
+		\item \texttt{posixpath} for UNIX-style paths
+		\item \texttt{ntpath} for Windows paths
+		\item \texttt{macpath} for old-style MacOS paths
+		\item \texttt{os2emxpath} for OS/2 EMX paths
 	\end{itemize}
 	\end{itemize}
 	
@@ -590,13 +592,61 @@ else:
 >>> import os.path
 >>> os.path.exists(".")
 >>> os.path.getmtime("./somefile")
->>> os.path.abspath(os.getcwd() + os.path.sep + "somedir" + os.path.sep + "somefile")
+>>> os.path.abspath(os.path.join(os.getcwd(), "somedir", "somefile"))
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
 
-\subsection{RTFM -- Hilfe zur Selbsthilfe}  
+\subsection{RTFM -- Hilfe zur Selbsthilfe}
+\begin{frame}[fragile]
+	\frametitle{RTFM -- Hilfe zur Selbsthifle}
+
+	\begin{itemize}
+		\item Python modules are generally well-documented
+		\item Most Python programmers write at least minimal docstrings
+	\end{itemize}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import os
+>>> help(os)
+>>> help(os.abort)
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{*sh}
+	\begin{lstlisting}
+[tom@workshop ~]$ pydoc os
+[tom@workshop ~]$ pydoc os.path
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> def function(a, b):
+...     """Do X and return a list."""
+...     pass
+...
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
     %  help(), pydoc, online doku 
+
+\begin{frame}[fragile]
+	\frametitle{RTFM -- Hilfe zur Selbsthifle}
+	
+	\begin{itemize}
+		\item \url{http://docs.python.org}
+		\item \url{http://docs.python.org/library/re.html}
+	\end{itemize}
+
+\end{frame}
 
 \section{Input/Output } 
     % auf Dateien, stdin/out/err
