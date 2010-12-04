@@ -30,7 +30,7 @@
 \titlegraphic{\includegraphics[height=2cm]{hk-logo.png}}
 %\logo{\includegraphics[height=1cm]{hk-logo.png}}
 
-\title[Python Workshop]{Hackinggroup -- Python Workshop}
+\title[Python Workshop]{Hackinggroup -- Python Workshop -- Part 1}
 \subtitle{A tale about dutch ducks with a fable for British comedy}
 \author[Thomas Kastner, Michael Rodler]{Thomas Kastner\and Michael Rodler}
 \date{\today}
@@ -66,14 +66,15 @@
 \end{frame}
 
 
-\begin{frame}{allowpagebreaks}
+\begin{frame}[fragile,allowframebreaks]
     \frametitle{Table of contents -- Wos ma heit mochn}
     \tableofcontents
+    And because it's a so called ``Workshop'' we will also write some code together ;)
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{GO! -- TU ES!}
-	\pause
+\pause
     \begin{exampleblock}{python}
     \begin{lstlisting}
 >>> import antigravity
@@ -90,7 +91,7 @@
     \begin{block}{Wikipedia about ``Hello World!''}
     A ``Hello World'' program is a computer program which prints out ``Hello World!'' on a display device. It is used in many introductory tutorials for teaching a programming language.
     \end{block}
-
+\pause
     \begin{exampleblock}{python}
     \begin{lstlisting}
 >>> print "Hello World!" 
@@ -101,13 +102,13 @@
 \subsection{About variables \& types}
 \begin{frame}[fragile]
 	\frametitle{About variables \& types}
-	\begin{alertblock}{dynamic strong typed}
+	\begin{alertblock}{strong dynamic type system}
 	\begin{itemize}
 	\item dynamic -- any variable, any type
 	\item strong -- no magic type casting
 	\end{itemize}
-		\pause
 	\end{alertblock}
+\pause
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
 >>> x = 42
@@ -116,7 +117,7 @@
 	\end{lstlisting}
 	\end{exampleblock}
 
-	\pause
+\pause
 
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -127,6 +128,25 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Strings}
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = "Hello " + "I'm" + " a string"
+>>> x.switchcase()
+>>> x.upper()
+>>> x.lower()
+>>> x.startswith("Hell")
+>>> x.endswith("G")
+>>> x.replace("I'm", "you're not")
+>>> ",".join(["a","b","c","d"])
+>>> x.split(" ")
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 
 \begin{frame}[fragile]
 	\frametitle{list, dict, tuple -- Eh ois des söbe?}
@@ -143,7 +163,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\end{lstlisting}
 	\end{exampleblock}
 	
-	\pause
+\pause
 	
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -153,7 +173,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\end{lstlisting}
 	\end{exampleblock}
 
-	\pause
+\pause
 
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -183,10 +203,10 @@ TypeError: cannot concatenate 'str' and 'int' objects
     \end{lstlisting}
     \end{exampleblock}
     
-	\pause
+\pause
 
     \begin{block}{Truth value testing}
-    Any object can be tested for truth value. The following values are considered \emph{false}:
+    Any object can be tested for truth value. The following values are considered \emph{False}:
     \begin{itemize}
         \item None, False, 0
         \item any empty sequence, for example: "", (), []
@@ -237,7 +257,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\end{lstlisting}
 	\end{exampleblock}
 	
-	\pause
+\pause
 	
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -246,7 +266,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\end{lstlisting}
 	\end{exampleblock}
 
-	\pause
+\pause
 	
 	\begin{block}{jumping}
 	you can also \textbf{break} and \textbf{continue}.
@@ -265,7 +285,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 ...
 >>> x = doSomething("for the lulz")
 	\end{lstlisting}
-	\pause	
+\pause	
 	\begin{lstlisting}
 >>> def func(arg0, arg1="default", *args, **kwargs):
 ... 	print "arg0 =", arg0
@@ -344,7 +364,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 \begin{frame}[fragile]
 	\frametitle{code like a pythonista}
     ``Programs must be written for people to read, and only incidentally for machines to execute.'' -- Abelson \& Sussman\\
-	\pause    
+\pause    
     
     \begin{alertblock}{not pythonic}
     \begin{lstlisting}
@@ -367,7 +387,7 @@ result = ', '.join(colors)
 	\frametitle{code like a pythonista}
 	
 	``Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'' -- Brian W. Kernighan
-	\pause
+\pause
 
 	\begin{alertblock}{not pythonic}
 	\begin{lstlisting}
@@ -378,7 +398,7 @@ if d.has_key(key):
     do_something_with(d[key])
     \end{lstlisting}
 	\end{alertblock}
-  	\pause	
+\pause	
 	\begin{exampleblock}{pythonic}
 	\begin{lstlisting}
 for key in d:
@@ -405,7 +425,7 @@ if items != []: # yuck!
     do_something()
     \end{lstlisting}
 	\end{alertblock}
- 	\pause
+\pause
 	\begin{exampleblock}{pythonic}
 	\begin{lstlisting}
 if x:
@@ -426,7 +446,7 @@ if items:
 >>> print items
     \end{lstlisting}
 	\end{exampleblock}
-  	\pause
+\pause
 	\begin{alertblock}{not pythonic}
 	\begin{lstlisting}
 index = 0
@@ -438,7 +458,7 @@ for i in range(len(items)):
     print i, items[i]
     \end{lstlisting}
 	\end{alertblock}
-  	\pause	
+\pause	
 	\begin{exampleblock}{pythonic}
     \begin{lstlisting}
 for (index, item) in enumerate(items):
@@ -457,7 +477,7 @@ def bad_append(new_item, a_list=[]):
     return a_list
     \end{lstlisting}% will always return the SAME list object
 	\end{alertblock}
- 	\pause
+\pause
 	\begin{exampleblock}{good idea}
 	\begin{lstlisting}
 def good_append(new_item, a_list=None):
@@ -619,7 +639,7 @@ else:
 \pause
 
 	\begin{exampleblock}{*sh}
-	\begin{lstlisting}
+	\begin{lstlisting}[language=bash]
 [tom@workshop ~]$ pydoc os
 [tom@workshop ~]$ pydoc os.path
 	\end{lstlisting}
@@ -648,12 +668,161 @@ else:
 
 \end{frame}
 
-\section{Input/Output } 
-    % auf Dateien, stdin/out/err
+\section{Input and Output}
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{stdin, stdout, stderr}
+    
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+	
+	We already know how to write to \emph{stdout} with \emph{print}. We can also use \emph{stderr}.
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> print "I can't go, I've got this thing...."
+>>> import sys
+>>> sys.stdout.write("What thing?\n")
+>>> sys.stderr.write("...")
+>>> print >>sys.stderr, "a Penis."
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{itemize}
+	\item \emph{print} automagically adds line endings, use it for text
+	\item \emph{write} does not, don't use it (except for binary data)
+	\end{itemize}
+\end{frame}
 
-% Beispiel
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+	
+	Reading from \emph{stdin} is quite easy.
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = input("Please input x: ")
+>>> y = raw_input("Please input y: ")
+	\end{lstlisting}
+	\end{exampleblock}
+	Where's the difference? Try this:
+\pause
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = input("x: ")
+x: 42
+>>> y = raw_input("y: ")
+y: 42
+>>> type(x); type(y)
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{itemize}
+	\item \emph{input} parses the values, and returns the most suitable type
+	\item \emph{raw\_input} always returns a string
+	\end{itemize}
+\end{frame}
+
+%%% \begin{Beispiel}
+%%% src/bsp1.py
+\begin{frame}[fragile]
+	\frametitle{Example -- A Beispü}
+	
+	ToDo:
+	\begin{itemize}
+	\item get a sentence and a word from user
+		\begin{itemize}
+		\item read from input and/or command line parameters
+		\end{itemize}
+	\item split user input in words
+	\item filter punctuation
+	\item search for a specific word in user input (NOT case sensitive)
+		\begin{itemize}
+		\item returning boolean
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Example -- A Beispü}
+	
+	Could be so easy:
+\pause
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> s = "This is an example input string"
+>>> print ("example" in s)
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{block}{Lesson:}
+	If you have a problem, there's probably some solution already written (in python).
+	\end{block}
+\end{frame}
+%%% \end{Beispiel}
+
+\subsection{Writing and Reading Files}
+
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+
+	But we can also write to files. To open a file you can use the built-in \emph{open} function:
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> f = open("testout.txt", "w")
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	File Modes: ``w'', ``r'', ``a''\\
+	append ``+'' for simultaneous r/w, \\
+	``b'' for binary document (m\$ win only)
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Input/Output}
+	Writing to a file:
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> f.write("What am I supposed to do?\n")
+>>> print >>f, "Well, have you considered telling her how you feel?"
+>>> sys.stdout = f
+>>> print "Leonard, I'm a physicist, not a hippie."
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	Reading from a file:
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> with open("myfile", "r") as f:
+...     txt = f.read()
+...     do_something_with(txt)
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+%%% \begin{beispiel} %%%
+
+\begin{frame}[fragile]
+	\frametitle{Example -- A Beispü}
+	
+	ToDo:
+	\begin{itemize}
+	\item read a text file
+	\item search text file for email adresses
+	\item write list of email adresses to another file
+	\end{itemize}
+\end{frame}
+
+%%% \end{beispiel} %%%
+
+
 \section{re Modul}
-% Beispiel
+%%%%%%%%%%%%%%%%%%
+
+\section{Writing Some Code}
+
+%%% \begin{beispiel} %%%
+
+%%% \end{beispiel} %%%
+
 
 
 \begin{frame}

@@ -1,0 +1,116 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{
+    language=Python,
+    basicstyle=\scriptsize,
+    breakatwhitespace=true,breaklines=true,%
+    tabsize=2, % Tabulatorbreite
+    showstringspaces=false
+}
+
+\hypersetup{
+    pdftitle={\inserttitle},
+    pdfsubject={\inserttitle},
+    pdfauthor={\insertauthor},
+    pdfkeywords={\inserttitle},
+    pdfstartview={FitH}
+}
+
+\usetheme{Pittsburgh}
+%\usetheme{Frankfurt}
+\usecolortheme{whale}
+%\usecolortheme{beaver}
+\beamertemplatenavigationsymbolsempty
+\titlegraphic{\includegraphics[height=2cm]{hk-logo.png}}
+%\logo{\includegraphics[height=1cm]{hk-logo.png}}
+
+\title[Python Workshop]{Hackinggroup -- Python Workshop -- Part 2}
+\subtitle{A tale about dutch ducks with a fable for British comedy}
+\author[Thomas Kastner, Michael Rodler]{Thomas Kastner\and Michael Rodler}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \frametitle{Introduction -- Wer san ma denn?}
+
+    \begin{block}{Michael Rodler}
+    \begin{itemize}
+        \item aka f0rk, f0rki, f0rkmaster, Gabel, etc.
+        \item Student SIB09
+        \item 3 years coding python for fun
+        \item 3 months coding python for profit
+    \end{itemize}
+    \end{block}
+
+    \begin{block}{Thomas Kastner}
+    \begin{itemize}
+        \item aka br3z3l, tom
+        \item Student SIB08
+        \item 4 years coding python for fun
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile,allowframebreaks]
+    \frametitle{Table of contents -- Wos ma heit mochn}
+    \tableofcontents
+    And because it's a so called ``Workshop'' we will also write some code together ;)
+\end{frame}
+
+\section{urllib}
+%Website fetchen mit urllib
+
+%%% \begin{beispiel} %%%
+
+%%% \end{beispiel} %%%
+
+
+\section{mechanize}
+%Website crawlen mit mechanize
+
+%%% \begin{beispiel} %%%
+
+%%% \end{beispiel} %%%
+
+
+\section{paramiko}
+%Ergebnisse per SSH/SFTP auf server speicher?
+
+%%% \begin{beispiel} %%%
+
+%%% \end{beispiel} %%%
+
+
+\section{twisted}
+%Ergebnisse im IRC posten (BOTNETT!!!! :) )?
+
+%%% \begin{beispiel} %%%
+
+%%% \end{beispiel} %%%
+
+
+
+\begin{frame}
+	\frametitle{References}
+	\begin{thebibliography}{3}
+	\bibitem{kopf} the authors' epic python knowledge
+	\bibitem{pydoc} \url{http://docs.python.org/}
+	\end{thebibliography}
+\end{frame}
+
+\end{document}
