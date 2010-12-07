@@ -27,4 +27,22 @@ if __name__ == "__main__":
     else:
         print >>sys.stderr, "Input does not contain the specified word"
         sys.exit(-1)
+        
+##############################################################################
+        
+def find_mail(string):
+	result = []
+	for word in string.split():
+		if word.find('@') == 0:
+			result.append(word)
+	return result
     
+def find_mail(f):
+	result = []
+	for word in f.readline():
+		if word.find('@') == 0:
+			result.append(word)
+	return result
+    
+with open(raw_inpput('file: ')) as f:
+	list = find_mail(f)

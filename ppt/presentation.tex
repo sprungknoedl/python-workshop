@@ -82,6 +82,31 @@
     \end{exampleblock}
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Python Version Madness -- Whyyyyy?}
+	\begin{alertblock}{Python 1.x}
+	\begin{itemize}
+		\item really really old
+		\item sucks
+	\end{itemize}	
+	\end{alertblock}
+
+	\begin{block}{Python 2.x}
+	\begin{itemize}
+	\item new object system
+	\item lots of legacy stuff in stdlib
+	\item $>=2.5$ on most (all) linux systems
+	\end{itemize}		
+	\end{block}
+
+	\begin{block}{Python 3.x}
+	\begin{itemize}
+	\item not backwards compatible
+	\item syntax cleanup
+	\item stdlib cleanup
+	\end{itemize}	
+	\end{block}
+\end{frame}
 
 \section{Syntax}
 %%%%%%%%%%%%%%%%
@@ -136,13 +161,23 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\begin{lstlisting}
 >>> x = "Hello " + "I'm" + " a string"
 >>> x.switchcase()
->>> x.upper()
 >>> x.lower()
+>>> x.find('string')
 >>> x.startswith("Hell")
->>> x.endswith("G")
 >>> x.replace("I'm", "you're not")
->>> ",".join(["a","b","c","d"])
 >>> x.split(" ")
+>>> ",".join(["a","b","c","d"])
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> print "I'm your %s" % "bitch"
+>>> print "Me is %d years old" % 12
+>>> print "I have %s on %s for %s" % ("searched", '''wikiquote''', """this quotes""")
+>>> print '%(language)s has %(#)03d quote types.' % {'language': "Python", "#": 2}
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
@@ -209,7 +244,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
     Any object can be tested for truth value. The following values are considered \emph{False}:
     \begin{itemize}
         \item None, False, 0
-        \item any empty sequence, for example: "", (), []
+        \item any empty sequence, for example: \grqq\grqq , (), []
         \item any empty mapping, for example: \{\}
     \end{itemize}
     All other values are considered \emph{true}
@@ -298,6 +333,73 @@ TypeError: cannot concatenate 'str' and 'int' objects
 >>> func(0)
 	\end{lstlisting}
 	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Example -- A Beispü}
+	
+	\begin{block}{Exercises}
+	\begin{itemize}
+	\item[\checkmark] write a function (\texttt{find\_mail})
+		\begin{itemize}
+		\item[\checkmark] get text per argument
+		\item[\checkmark] search for e-mail addresses (@ in word)
+		\item[\checkmark] return list of e-mail addresses
+		\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{RTFM -- Hilfe zur Selbsthilfe}
+\begin{frame}[fragile]
+	\frametitle{RTFM -- Hilfe zur Selbsthifle}
+
+	\begin{itemize}
+		\item Python modules are generally well-documented
+		\item Most Python programmers write at least minimal docstrings
+	\end{itemize}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> import os
+>>> help(os)
+>>> help(os.abort)
+>>> dir(os)
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{*sh}
+	\begin{lstlisting}[language=bash]
+[tom@workshop ~]$ pydoc os
+[tom@workshop ~]$ pydoc os.path
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> def function(a, b):
+...     """Do X and return a list."""
+...     pass
+...
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+    %  help(), pydoc, online doku 
+
+\begin{frame}[fragile]
+	\frametitle{RTFM -- Hilfe zur Selbsthifle}
+	
+	\begin{itemize}
+		\item \url{http://docs.python.org}
+		\item \url{http://docs.python.org/library/re.html}
+	\end{itemize}
+
 \end{frame}
 
 \section{That's why Python is awesome?}
@@ -618,57 +720,6 @@ else:
 	\end{exampleblock}
 \end{frame}
 
-\subsection{RTFM -- Hilfe zur Selbsthilfe}
-\begin{frame}[fragile]
-	\frametitle{RTFM -- Hilfe zur Selbsthifle}
-
-	\begin{itemize}
-		\item Python modules are generally well-documented
-		\item Most Python programmers write at least minimal docstrings
-	\end{itemize}
-
-\pause
-
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> import os
->>> help(os)
->>> help(os.abort)
-	\end{lstlisting}
-	\end{exampleblock}
-
-\pause
-
-	\begin{exampleblock}{*sh}
-	\begin{lstlisting}[language=bash]
-[tom@workshop ~]$ pydoc os
-[tom@workshop ~]$ pydoc os.path
-	\end{lstlisting}
-	\end{exampleblock}
-
-\pause
-
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> def function(a, b):
-...     """Do X and return a list."""
-...     pass
-...
-	\end{lstlisting}
-	\end{exampleblock}
-\end{frame}
-    %  help(), pydoc, online doku 
-
-\begin{frame}[fragile]
-	\frametitle{RTFM -- Hilfe zur Selbsthifle}
-	
-	\begin{itemize}
-		\item \url{http://docs.python.org}
-		\item \url{http://docs.python.org/library/re.html}
-	\end{itemize}
-
-\end{frame}
-
 \section{Input and Output}
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{stdin, stdout, stderr}
@@ -773,71 +824,51 @@ bad: __import__('os').getcwd()
 	\end{block}
 \end{frame}
 
-%%% \begin{Beispiel}
-%%% src/bsp1.py
 \begin{frame}[fragile]
 	\frametitle{Example -- A Beispü}
 	
 	\begin{block}{Exercises}
 	\begin{itemize}
-	\item[\checkmark] get a sentence and a word from user
-		\begin{itemize}
-		\item[\checkmark] read from input and/or command line parameters
-		\end{itemize}
-	\item[\checkmark] split user input in words
-	\item[\checkmark] filter punctuation
-	\item[\checkmark] search for a specific word in user input (NOT case sensitive)
-		\begin{itemize}
-		\item[\checkmark] returning boolean
-		\end{itemize}
-	\end{itemize}
-	\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Example -- A Beispü}
-	
-	Could be so easy:
-\pause
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
->>> s = "This is an example input string"
->>> print ("example" in s)
-	\end{lstlisting}
-	\end{exampleblock}
-\pause
-	\begin{block}{Lesson:}
-	If you have a problem, there's probably some solution already written (in python).
-	\end{block}
-\end{frame}
-%%% \end{Beispiel}
-
-%%% \begin{beispiel} %%%
-
-\begin{frame}[fragile]
-	\frametitle{Example -- A Beispü}
-	
-	ToDo:
-	\begin{itemize}
 	\item[\checkmark] read a text file
-	\item[\checkmark] search text file for email adresses
-	\item[\checkmark] write list of email adresses to another file
+	\item[\checkmark] search text file for e-mail adresses
+	\item[\checkmark] write list of e-mail adresses to another file
+	\item[\checkmark] read file with e-mail addresses (as list)
 	\end{itemize}
+	\end{block}
+
 \end{frame}
 
-%%% \end{beispiel} %%%
+\begin{frame}[fragile]
+	\frametitle{Improvements -- Wie mahs bessa mocht}
+	
+	\begin{block}{Exercises}
+	\begin{itemize}
+	\item[\checkmark] read line by line
+	\item[\checkmark] rewrite \texttt{find\_mail} to use stream objects
+	\item[\checkmark] use regex to search for valid e-mail addresses
+	\end{itemize}
+	\end{block}
 
+\end{frame}
 
-\section{re Modul}
-%%%%%%%%%%%%%%%%%%
+% TODO
+% - 1-2 slides to regex (re modul)
+% raw strings
 
-\section{Writing Some Code}
-
-%%% \begin{beispiel} %%%
-
-%%% \end{beispiel} %%%
-
-
+\begin{frame}[fragile]
+	\frametitle{Things you could improve -- Hausaufgaben}
+	
+	\begin{block}{Exercises}
+	\begin{itemize}
+	\item[\checkmark] detect e-mails over multiple lines
+	\item[\checkmark] detect obfuscated e-mails
+		\begin{itemize}
+		\item[\checkmark] \texttt{user (at) example (dot) com}
+		\item[\checkmark] \texttt{user at example dot com}
+		\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
 
 \begin{frame}
 	\frametitle{References}
