@@ -72,8 +72,92 @@
     And because it's a so called ``Workshop'' we will also write some code together ;)
 \end{frame}
 
+
+\section{Some syntax stuff we forgot}
+
+\begin{frame}[fragile]
+	\frametitle{more syntactic sugar}
+
+	Some operators
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> x = 42**2 % 1337
+>>> 0xD5 & 0377 ^ 0xFF
+	\end{lstlisting}
+	\end{exampleblock}	
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> a = ""; b = "astring"
+>>> x = a or b
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	Converting types:
+	\begin{exampleblock}{python}
+>>> str(42)
+>>> list((1,2,3,4))
+>>> int("42")	
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{exceptions}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+try:
+	f = open("aprobablymissingfile.txt", "r")
+except IOError, e:
+	print >>sys.stderr, "Error:", str(e)[10:]
+	sys.exit(1)
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	Same rules apply, as in other languages, except maybe that Python exceptions are more lightweight.
+	
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{List Comprehension and Generator Expression}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> n = [ i**2 for i in range(100) if i & 1 == 0 ]
+>>> import os
+>>> zipfiles = [ s for s in os.listdir(".") if s.endswith(".zip") ]
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> for x in ( )
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\section{some low level stuff}
+
+\begin{frame}
+	\frametitle{struct -- working with binary data}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{ctypes -- accessing c functions}
+	
+\end{frame}
+
+
+
 \section{urllib}
 %Website fetchen mit urllib
+
+\begin{frame}[fragile]
+	\frametitle{urllib, urllib2 -- working with URLs}
+	
+	\emph{PyDbg} -- scriptable windows debugger, written in python
+\end{frame}
 
 %%% \begin{beispiel} %%%
 
