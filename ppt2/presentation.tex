@@ -23,12 +23,9 @@
 }
 
 \usetheme{Pittsburgh}
-%\usetheme{Frankfurt}
 \usecolortheme{whale}
-%\usecolortheme{beaver}
 \beamertemplatenavigationsymbolsempty
 \titlegraphic{\includegraphics[height=2cm]{hk-logo.png}}
-%\logo{\includegraphics[height=1cm]{hk-logo.png}}
 
 \title[Python Workshop]{Hackinggroup -- Python Workshop -- Part 2}
 \subtitle{A tale about dutch ducks with a fable for British comedy}
@@ -42,7 +39,7 @@
 \end{frame}
 
 \section*{Introduction}
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
     \frametitle{Introduction -- Wer san ma denn?}
@@ -66,60 +63,55 @@
 \end{frame}
 
 
-\begin{frame}[fragile,allowframebreaks]
+\begin{frame}[fragile]
     \frametitle{Table of contents -- Wos ma heit mochn}
     \tableofcontents
-    And because it's a so called ``Workshop'' we will also write some code together ;)
+    And because it's called a \emph{Workshop} we will also write some code together ;)
 \end{frame}
 
-
-\section{Some syntax stuff we forgot}
+\section{Some stuff we forgot}	% fork
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
 	\frametitle{more syntactic sugar}
 
-	Some operators
 	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> a = ""; b = "foo"
+>>> x = a or b
+>>> x = "a" * 21
+>>> x = [1,2,3] * 5
+	\end{lstlisting}
+	\end{exampleblock}
+
+	\begin{exampleblock}{python -- some operators}
 	\begin{lstlisting}
 >>> x = 42**2 % 1337
 >>> 0xD5 & 0377 ^ 0xFF
 	\end{lstlisting}
 	\end{exampleblock}	
 	
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- converting types}
 	\begin{lstlisting}
->>> a = ""; b = "astring"
->>> x = a or b
-	\end{lstlisting}
-	\end{exampleblock}
-	
-	Converting types:
-	\begin{exampleblock}{python}
 >>> str(42)
 >>> list((1,2,3,4))
 >>> int("42")	
-	\end{exampleblock}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{exceptions}
-	\begin{exampleblock}{python}
-	\begin{lstlisting}
-try:
-	f = open("aprobablymissingfile.txt", "r")
-except IOError, e:
-	print >>sys.stderr, "Error:", str(e)[10:]
-	sys.exit(1)
 	\end{lstlisting}
 	\end{exampleblock}
-	
-	Same rules apply, as in other languages, except maybe that Python exceptions are more lightweight.
-	
-
 \end{frame}
 
+% os.FORK!!!!
+% sys und os usen (systemnah programmieren)
+% system befehle ausführen (subprocess)
+% REGEX!
 
-\begin{frame}
+\section{Python performance}	% tom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{List Comprehensions}	% tom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
 	\frametitle{List Comprehension and Generator Expression}
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
@@ -132,62 +124,131 @@ except IOError, e:
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
 >>> for x in ( )
+>>> def f(arg):
+...     do_something_with(arg)
+>>> x = f( s for s in blafu )
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
 
-\section{some low level stuff}
+\section{Exceptions}	% DONE
+%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{Exceptions -- oda wenn ois ind luft gehd}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+try:
+    f = open("/dev/missing", "r")
+except IOError, e:
+    sys.stderr.write("Error: %s\n" % e.message)
+    sys.exit(1)
+	\end{lstlisting}
+	\end{exampleblock}
+
+\pause
+
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+try:
+    import threading as _threading
+except ImportError:
+    import dummy_threading as _threading
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	It's easier to ask for forgiveness than permission (EAFP)
+\end{frame}
+
+\section{Object Orientated Programming}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% EVERYTHING IS AN OBJECT!
+\begin{frame}[plain]
+	\begin{center}
+	\huge{\textbf{EVERYTHING IS AN OBJECT!}}
+	\end{center}
+\end{frame}
+
+% Creating classes		-- fork
+	%like the ability to subclass most built-in types
+% Konstruktor			-- fork
+
+% public/private		-- fork
+% dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
+% Special Methods (Operator Overloading)							-- tom
+% Inheritance		-- fork
+>>> class A(object):
+...     def foo(self):
+...             print "A"
+...
+>>> class B(object):
+...     def foo(self):
+...             print "B"
+...
+>>> class C(A,B):
+...     pass
+...
+>>> class D(B,A):
+...     pass
+...
+>>> c = C()
+>>> c.foo()
+A
+>>> d = D()
+>>> d.foo()
+B
+
+\section{The Cheeseshop}	% fork
+%%%%%%%%%%%%%%%%%%%%%%%%
+% cheeseshop, easy_install, pip
+
+\section{Advanced harvesting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection*{urllib}	% fork
+\begin{frame}[fragile]
+	\frametitle{urllib, urllib2 -- working with URLs}
+\end{frame}
+
+\subsection*{mechanize} % fork
+\subsection*{twisted}	% tom
+\subsection*{multithreaded / concurrent}	% tom
+
+\section{FYI}
+%%%%%%%%%%%%%
+
+\subsection*{some low level stuff}	% fork
+% linksammlung
 
 \begin{frame}
 	\frametitle{struct -- working with binary data}
-	
+	% codesnippet
 \end{frame}
 
 \begin{frame}
 	\frametitle{ctypes -- accessing c functions}
-	
-\end{frame}
-
-
-
-\section{urllib}
-%Website fetchen mit urllib
-
-\begin{frame}[fragile]
-	\frametitle{urllib, urllib2 -- working with URLs}
-	
 	\emph{PyDbg} -- scriptable windows debugger, written in python
 \end{frame}
 
-%%% \begin{beispiel} %%%
+\subsection*{ssh}
+	% paramiko
 
-%%% \end{beispiel} %%%
+\subsection*{network}
+	% twisted
+	% asyncore/asynchat (builtin)
 
+\subsection*{web programming}
+	% django
+	% cherrypy
+	% jinja2
+	% ...
 
-\section{mechanize}
-%Website crawlen mit mechanize
-
-%%% \begin{beispiel} %%%
-
-%%% \end{beispiel} %%%
-
-
-\section{paramiko}
-%Ergebnisse per SSH/SFTP auf server speicher?
-
-%%% \begin{beispiel} %%%
-
-%%% \end{beispiel} %%%
-
-
-\section{twisted}
-%Ergebnisse im IRC posten (BOTNETT!!!! :) )?
-
-%%% \begin{beispiel} %%%
-
-%%% \end{beispiel} %%%
-
-
+\subsection*{databases}
+    % DB API
+    % sqlalchemy
+    % elixir
 
 \begin{frame}
 	\frametitle{References}
