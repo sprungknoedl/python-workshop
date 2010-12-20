@@ -313,10 +313,18 @@ B
 \subsection*{urllib}	% fork
 \begin{frame}[fragile]
 	\frametitle{urllib, urllib2 -- working with URLs}
-	Open url as generic stream object.
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- url as as file like}
 	\begin{lstlisting}
 >>> site = urllib.urlopen("http://f0rki.at")
+>>> print f.read()
+	\end{lstlisting}
+	\end{exampleblock}
+\pause	
+	\begin{exampleblock}{python -- url encoding}
+	\begin{lstlisting}
+>>> import urllib
+>>> params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+>>> f = urllib.urlopen("http://www.example.com/cgi-bin/query", params)
 >>> print f.read()
 	\end{lstlisting}
 	\end{exampleblock}
