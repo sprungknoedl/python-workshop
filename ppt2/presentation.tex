@@ -171,6 +171,40 @@ while True:
 
 \section{Python performance}	% tom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{Python performance}
+    \begin{block}{vs. C/C++}
+    \begin{itemize}
+        \item much faster to write code 
+        \item batteries included
+        \item python bottlenecks can be optimized with moduules written in C
+    \end{itemize}
+    \end{block}
+
+    \begin{block}{vs. java}
+    \begin{itemize}
+        \item faster to write code
+        \item better api\footnote{\url{http://paulbuchheit.blogspot.com/2007/05/amazingly-bad-apis.html}}
+        \item python 2-50x slower than java
+        \item python+psyco 1-5x slower than java
+        \item real oop
+    \end{itemize}
+    \end{block}
+
+    \begin{block}{vs. php}
+        \item faster than php
+        \item more use cases
+    \end{block}
+
+    \begin{alertblock}{conclusions}
+    \begin{itemize}
+        \item start of python interpreted costs!
+        \item much faster coding
+        \item \textbf{most performance bottlenecks are wrong algorithms}
+        \item \url{http://wiki.python.org/moin/PythonSpeed}
+    \end{itemize}
+    \end{alertblock}
+\end{frame}
 
 \section{List Comprehensions}	% tom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
