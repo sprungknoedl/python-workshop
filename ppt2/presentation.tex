@@ -4,7 +4,7 @@
 \usepackage{graphicx}
 \usepackage{lmodern}
 \usepackage{listings}
-\usepackage{color}
+\usepackage{xcolor}
 
 \lstset{
     language=Python,
@@ -75,7 +75,7 @@
 \begin{frame}[fragile]
 	\frametitle{more syntactic sugar}
 
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- syntactic sugar}
 	\begin{lstlisting}
 >>> a = ""; b = "foo"
 >>> x = a or b
@@ -100,10 +100,74 @@
 	\end{exampleblock}
 \end{frame}
 
-% os.FORK!!!!
 % sys und os usen (systemnah programmieren)
+% os.FORK!!!!
+\begin{frame}[fragile]
+	\frametitle{os -- some more stuff}
+	\begin{exampleblock}{python -- os}
+	\begin{lstlisting}
+>>> os.getloadavg()
+>>> if os.getuid():
+...     os.setuid(1000)
+>>> open(os.devnull, 'w').write('This is sent to nirvana')
+>>> os.killpg(1337,9)
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{exampleblock}{python -- a fork bomb}
+	\begin{lstlisting}
+import os
+while True:
+    pid = os.fork()
+    if not pid:
+        print "Hello I'm a child :D"
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 % system befehle ausführen (subprocess)
+\begin{frame}[fragile]
+	\frametitle{subprocces -- execute processes}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> p = subprocess.Popen(["ls", "-l", "-a"])
+>>> retval = subprocess.call(["rm", "-f", "./somefile"])
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> filename = input("What file would you like to display?\n")
+>>> subprocess.call("cat " + filename, shell=True)
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	type in "non\_existent; rm -rf / \#"\\
+	Oh noes, command injection... this is bad ;)
+\end{frame}
+
 % REGEX!
+\begin{frame}[fragile]
+	\frametitle{re -- regex again}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> r = re.compile(r"(\w{31}=)")
+>>> m = r.search("This is some random Text eS4H0NWnnFGd8cCUavc6m2DwjRUzm6h= which contains a flag ;)")
+>>> if m:
+...     print m.groups()
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> r = re.compile(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
+>>> valid = r.match("10.13.37.0") is not None
+>>> valid = r.match(" 10.13.37.0") is not None
+>>> valid = r.search(" 10.13.37.0") is not None
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 
 \section{Python performance}	% tom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,7 +224,7 @@ except ImportError:
 	It's easier to ask for forgiveness than permission (EAFP)
 \end{frame}
 
-\section{Object Orientated Programming}
+\section{Object Oriented Programming}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % EVERYTHING IS AN OBJECT!
@@ -171,13 +235,36 @@ except ImportError:
 \end{frame}
 
 % Creating classes		-- fork
-	%like the ability to subclass most built-in types
+	% new-style --> like the ability to subclass most built-in types
 % Konstruktor			-- fork
+\begin{frame}[fragile]
+	\frametitle{Class definition}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> class MyClass(object):
+...     def __init__(self, y):
+...         self.x = 42
+...         self.y = y
+...     def func(self):
+...         return self.x
+... 
+>>> c = MyClass(21)
+>>> print c.func()
+>>> print c.y
+	\end{lstlisting}
+	\end{exampleblock}
+	
+	explicit inheritance from \emph{object} is needed to specify ''new-style'' classes
+\end{frame}
 
 % public/private		-- fork
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
 % Special Methods (Operator Overloading)							-- tom
 % Inheritance		-- fork
+\begin{frame}[fragile]
+	\frametitle{Inheritance}
+	\begin{exampleblock}{python -- multiple inheritance}
+	\begin{lstlisting}
 >>> class A(object):
 ...     def foo(self):
 ...             print "A"
@@ -197,11 +284,27 @@ except ImportError:
 A
 >>> d = D()
 >>> d.foo()
-B
+B	
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
 
 \section{The Cheeseshop}	% fork
 %%%%%%%%%%%%%%%%%%%%%%%%
 % cheeseshop, easy_install, pip
+
+\begin{frame}[fragile]
+	\frametitle{The cheeseshop -- installing stuff}
+	Python Package Index\\
+	\url{http://pypi.python.org}
+	\begin{exampleblock}{python}
+	\begin{lstlisting}[language=bash]
+[fork@workshop ~]$ easy_install pelican
+[fork@workshop ~]$ easy_install pip
+[fork@workshop ~]$ pip uninstall pelican
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
 
 \section{Advanced harvesting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -210,6 +313,13 @@ B
 \subsection*{urllib}	% fork
 \begin{frame}[fragile]
 	\frametitle{urllib, urllib2 -- working with URLs}
+	Open url as generic stream object.
+	\begin{exampleblock}{python}
+	\begin{lstlisting}
+>>> site = urllib.urlopen("http://f0rki.at")
+>>> print f.read()
+	\end{lstlisting}
+	\end{exampleblock}
 \end{frame}
 
 \subsection*{mechanize} % fork
