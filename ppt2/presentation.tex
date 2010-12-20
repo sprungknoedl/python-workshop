@@ -211,20 +211,25 @@ while True:
 
 \begin{frame}[fragile]
 	\frametitle{List Comprehension and Generator Expression}
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- list comprehensions}
 	\begin{lstlisting}
 >>> n = [ i**2 for i in range(100) if i & 1 == 0 ]
+>>> type(n)
+<type 'list'>
 >>> import os
->>> zipfiles = [ s for s in os.listdir(".") if s.endswith(".zip") ]
+>>> zipfiles = [ s for s in os.walk(".") if s.endswith(".zip") ]
 	\end{lstlisting}
 	\end{exampleblock}
+
+\pause
 	
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- generator expressions}
 	\begin{lstlisting}
->>> for x in ( )
->>> def f(arg):
-...     do_something_with(arg)
->>> x = f( s for s in blafu )
+>>> n = [ i**2 for i in range(100) if i & 1 == 0 ]
+>>> type(n)
+<type 'generator'>
+>>> import os
+>>> zipfiles = (s for s, _, _ in os.walk(".") if s.endswith(".zip"))
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
