@@ -1,5 +1,16 @@
+import re
+
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
+
+from urllib import urlopen
+
+def parse_mails(stream):
+	result = []
+	for line in stream:
+		result.extend(re.findall('\w*@\w*\.\w*', line))
+		
+	return result
 
 class Bot(irc.IRCClient):
 	'''
@@ -14,7 +25,7 @@ class Bot(irc.IRCClient):
 		called when bot has succesfully signed on to server.
 		'''
 		
-		self.join(channel)
+		self.join(self.channel)
 		
 	def privmsg(self, user, channel, msg):
 		'''
@@ -22,9 +33,17 @@ class Bot(irc.IRCClient):
 		if this is a message in a channel or a private message
 		'''
 		
-		if msg.startswith('!start '):
-			# do action
-			self.msg(channel, '[starting to harvest]')
+		# ignore all messages except !harvest calls
+		if msg.startswith('!harvest'):
+			# get url from message
+			url = msg.split()[1]
+			
+			# find all mail addresses and print them one per line
+			for mail in re.findall('\w*@\w*\.\w*', urlopen(url).read()):
+				self.msg(channel, '[@] %s' % mail)
+			
+			# tell we are finished
+			self.msg(channel, '[fin]')
 			
 class Factory(protocol.ClientFactory):
 	'''
@@ -55,6 +74,5 @@ if __name__ == '__main__':
 	factory = protocol.ClientFactory()
 	factory.protocol = Bot
 
-	#reactor.connectSSL('irc.freenode.net', 6667, factory)
 	reactor.connectTCP('irc.freenode.net', 6667, factory)
 	reactor.run()

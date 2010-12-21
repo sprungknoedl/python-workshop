@@ -243,7 +243,7 @@ subprocess.call("cat " + filename, shell=True)
 >>> type(n)
 <type 'list'>
 >>> import os
->>> zipfiles = [n for r, _, _ in os.walk(".") if n.endswith(".zip")]
+>>> zipfiles = [n for _, _, n in os.walk(".") if n.endswith(".zip")]
 	\end{lstlisting}
 	\end{exampleblock}
 	
@@ -262,7 +262,7 @@ subprocess.call("cat " + filename, shell=True)
 >>> type(n)
 <type 'generator'>
 >>> import os
->>> zipfiles = (n for n, _, _ in os.walk(".") if n.endswith(".zip"))
+>>> zipfiles = (n for _, _, n in os.walk(".") if n.endswith(".zip"))
 	\end{lstlisting}
 	\end{exampleblock}
 \pause
@@ -545,7 +545,7 @@ class C(object):
 
     @x.deleter
     def x(self):
-    	self._old_x = self._x
+        self._old_x = self._x
         self._x = None
 	\end{lstlisting}
 	\end{exampleblock}
@@ -625,8 +625,10 @@ None
 >>> class MegaIterator(object):
 ...     cur = 0
 ...     max = 14
+...
 ...     def __iter__(self):
 ...         return self
+...
 ...     def next(self):
 ...         if cur < max:
 ...             cur += 1
@@ -691,11 +693,11 @@ None
 %%% Beispiel %%%%
 \begin{frame}
 	\frametitle{Let's write some code}
-	\begin{block}{ToDo}
+	\begin{block}{Exercises}
 	\begin{itemize}
-		\item fetch url
-		\item use find\_mail to search for email adress
-		\item write email list to file
+		\item[\checkmark] fetch url
+		\item[\checkmark] use \texttt{find\_mail} to search for email adress
+		\item[\checkmark] write email list to file
 	\end{itemize}
 	\end{block}
 \end{frame}
@@ -729,7 +731,7 @@ None
 	\begin{itemize}
 		\item handles data in an asynchronous manner
 		\item implements protocol parsing and handling
-		\item never waits for an event>>> 
+		\item never waits for an event
 	\end{itemize}
 	\end{block}
 
@@ -774,7 +776,6 @@ None
 		\item sometimes threads are slower than sequential computation
 		\begin{itemize}
 			\item cpu intensive tasks
-			\item signal processing overhead
 		\end{itemize}
 		\item GIL restricts access to Interpreter internals (and GIL unaware C-Extensions)
 	\end{itemize}
