@@ -162,8 +162,8 @@ subprocess.call("cat " + filename, shell=True)
 	\frametitle{re -- regex again}
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
->>> r = re.compile(r"(\w{31}=)")
->>> m = r.search("This is some random Text eS4H0NWnnFGd8cCUavc6m2DwjRUzm6h= which contains a flag ;)")
+>>> regex = re.compile(r"(\w{31}=)")
+>>> m = regex.search("This is some random Text eS4H0NWnnFGd8cCUavc6m2DwjRUzm6h= which contains a flag ;)")
 >>> if m:
 ...     print m.groups()
 	\end{lstlisting}
@@ -412,6 +412,7 @@ AttributeError: 'Fu' object has no attribute '__y'
 >>> class Bla(Fu):
 ...     def nom(self):
 ...         self.__y = 34
+...
 >>> b = Bla()
 >>> b.barf()
 21
@@ -457,8 +458,74 @@ B
 \end{frame}
 
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
-% Special Methods (Operator Overloading)							-- tom
+\begin{frame}
+	\frametitle{duck typing}
+	\framesubtitle{or why java-style interfaces suck}
 
+	\begin{exampleblock}{python -- silly example}
+	\begin{lstlisting}
+>>> class Duck(object):
+...    def quack(self): 
+...        print "Quaaaaaack!" 
+... 
+>>> class Person(object):
+...    def quack(self):
+...        print "The person imitates a duck."
+... 
+>>> def action(duck):
+...    duck.quack()
+...
+>>> donald = Duck()
+>>> fork = Person()
+>>> action(donald)
+>>> action(fork)
+
+\end{frame}
+
+% Special Methods (Operator Overloading)							-- tom
+\begin{frame}[fragile]
+	\frametitle{special methods}
+	\framesubtitle{the python way of operator overloading}
+
+	$\rightarrow$ \url{http://docs.python.org/reference/datamodel.html#special-method-names}
+
+	\begin{exampleblock}{python -- list style access}
+	\begin{lstlisting}
+>>> class MegaList(object):
+...     def __getitem__(self, index):
+...	        return index ** 2
+...
+>>> m = MegaList()
+>>> m[15]
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{special methods}
+	\framesubtitle{the python way of operator overloading}
+
+	\begin{exampleblock}{python -- iterator protocol}
+	\begin{lstlisting}
+>>> class MegaIterator(object):
+...     cur = 0
+...     max = 14
+...     def __iter__(self):
+...         return self
+...     def next(self):
+...         if cur < max:
+...             cur += 1
+...             return cur
+...         else:
+...             raise StopIteration()
+...
+>>> m = MegaIterator()
+>>> for i in m:
+...     print i
+...
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
 
 \section{The Cheeseshop}	% fork
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -481,7 +548,6 @@ B
 
 \section{Advanced harvesting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \subsection*{urllib}	% fork
 \begin{frame}[fragile]
