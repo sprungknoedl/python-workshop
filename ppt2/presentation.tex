@@ -249,7 +249,7 @@ subprocess.call("cat " + filename, shell=True)
 	
 	\begin{itemize}
 		\item quickly construct lists
-		\item list ist constructed and then returned
+		\item list is constructed and then returned
 	\end{itemize}
 
 \end{frame}
@@ -268,7 +268,7 @@ subprocess.call("cat " + filename, shell=True)
 \pause
 	\begin{itemize}
 		\item only one item is accessible
-		\item therfore consumes less memory
+		\item therefore consumes less memory
 		\item computed on the fly
 	\end{itemize}
 \end{frame}
@@ -330,14 +330,14 @@ False
 	\end{exampleblock}
 	Numbers are actually singletons\\
 	\begin{itemize}
-		\item \emph{is} checks for object indentity
+		\item \emph{is} checks for object identity
 		\item \emph{=} checks for object equality
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Everything is an Object}
-	\begin{exampleblock}{python -- 	Fun Fact: Functions are objects too}
+	\begin{exampleblock}{python -- 	fun fact: functions are objects too}
 	\begin{lstlisting}
 >>> def afunc(x):
 ...     afunc.x += x
@@ -400,8 +400,6 @@ False
 >>> f._x
 42
 >>> f.__y
-Traceback (most recent call last):
-  File "<input>", line 1, in <module>
 AttributeError: 'Fu' object has no attribute '__y'
 >>> f.__dict__
 {'_Fu__y': 21, '_x': 42}
@@ -451,6 +449,7 @@ B
 ...     def __init__(self):
 ...         self._x = 42
 ...         self.__y = 21
+...
 ...     def barf(self):
 ...         return self.__y
 >>> class Bla(Fu):
@@ -519,7 +518,7 @@ class SomeClass(object):
 	\end{exampleblock}
 \pause
 	\begin{itemize}
-		\item Put functions in classes, which logically belong there.
+		\item Put functions in classes, which logically belong there
 		\item Clean-up namespace
 		\item Modules probably better suited
 	\end{itemize}
@@ -643,18 +642,6 @@ None
 	\end{exampleblock}
 \end{frame}
 
-%%% Beispiel
-\begin{frame}
-	\frametitle{Let's write some code}
-	\begin{block}{ToDo}
-	\begin{itemize}
-		\item Write a class
-		
-		%TODO: think about good example
-	\end{itemize}
-	\end{block}
-\end{frame}
-%%% Beispiel
 
 \section{The Cheeseshop}	% fork
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -721,21 +708,17 @@ None
 	behaves like a normal browser (with cookies and stuff)
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
-br = mechanize.Browser()
-br.open("http://www.example.com/")
-response1 = br.follow_link(text_regex=r"cheese\s*shop", nr=1)
-assert br.viewing_html()
-print br.title()
-print response1.geturl()
-print response1.info()
-print response1.read()
-br.select_form(name="order")
-br["cheeses"] = ["mozzarella", "gouda"]
-response2 = br.submit()
-print br.form
+>>> br = mechanize.Browser()
+>>> br.open("http://www.example.com/")
+>>> response1 = br.follow_link(text_regex=r"cheese\s*shop", nr=1)
+>>> print br.title()
+>>> print response1.geturl()
+>>> print response1.read()
+>>> br.select_form(name="order")
+>>> br["someform"] = ["myusername", "password"]
+>>> response2 = br.submit()
 	\end{lstlisting}
 	\end{exampleblock}
-	Additional modules: ClientForm, ClientCookie
 \end{frame}
 
 \subsection*{twisted}	% tom
@@ -746,7 +729,7 @@ print br.form
 	\begin{itemize}
 		\item handles data in an asynchronous manner
 		\item implements protocol parsing and handling
-		\item never waits for an event
+		\item never waits for an event>>> 
 	\end{itemize}
 	\end{block}
 
