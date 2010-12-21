@@ -243,7 +243,7 @@ subprocess.call("cat " + filename, shell=True)
 >>> type(n)
 <type 'list'>
 >>> import os
->>> zipfiles = [n for r, _, _ in os.walk(".") if n.endswith(".zip")]
+>>> zipfiles = [n for _, _, n in os.walk(".") if n.endswith(".zip")]
 	\end{lstlisting}
 	\end{exampleblock}
 	
@@ -262,7 +262,7 @@ subprocess.call("cat " + filename, shell=True)
 >>> type(n)
 <type 'generator'>
 >>> import os
->>> zipfiles = (n for n, _, _ in os.walk(".") if n.endswith(".zip"))
+>>> zipfiles = (n for _, _, n in os.walk(".") if n.endswith(".zip"))
 	\end{lstlisting}
 	\end{exampleblock}
 \pause
@@ -385,32 +385,6 @@ False
 	explicit inheritance from \emph{object} is needed to specify ''new-style'' classes
 \end{frame}
 
-% public/private		-- fork
-\begin{frame}[fragile]
-	\frametitle{public/private attributes}
-	everything is public. (private attributes are seldom needed)\\
-	mark for internal use by naming with preceding underscore
-	\begin{exampleblock}{python -- quasi private attribute}
-	\begin{lstlisting}
->>> class Fu(object):
-...     def __init__(self):
-...         self._x = 42
-...         self.__y = 21
->>> f = Fu()
->>> f._x
-42
->>> f.__y
-Traceback (most recent call last):
-  File "<input>", line 1, in <module>
-AttributeError: 'Fu' object has no attribute '__y'
->>> f.__dict__
-{'_Fu__y': 21, '_x': 42}
->>> f._Fu__y
-21
-	\end{lstlisting}
-	\end{exampleblock}
-\end{frame}
-
 % Inheritance		-- fork
 \begin{frame}[fragile]
 	\frametitle{Inheritance}
@@ -439,6 +413,32 @@ A
 >>> d = D()
 >>> d.foo()
 B	
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+% public/private		-- fork
+\begin{frame}[fragile]
+	\frametitle{public/private attributes}
+	everything is public. (private attributes are seldom needed)\\
+	mark for internal use by naming with preceding underscore
+	\begin{exampleblock}{python -- quasi private attribute}
+	\begin{lstlisting}
+>>> class Fu(object):
+...     def __init__(self):
+...         self._x = 42
+...         self.__y = 21
+>>> f = Fu()
+>>> f._x
+42
+>>> f.__y
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+AttributeError: 'Fu' object has no attribute '__y'
+>>> f.__dict__
+{'_Fu__y': 21, '_x': 42}
+>>> f._Fu__y
+21
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
@@ -546,7 +546,7 @@ class C(object):
 
     @x.deleter
     def x(self):
-    	self._old_x = self._x
+        self._old_x = self._x
         self._x = None
 	\end{lstlisting}
 	\end{exampleblock}
@@ -626,8 +626,10 @@ None
 >>> class MegaIterator(object):
 ...     cur = 0
 ...     max = 14
+...
 ...     def __iter__(self):
 ...         return self
+...
 ...     def next(self):
 ...         if cur < max:
 ...             cur += 1
@@ -642,19 +644,6 @@ None
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
-
-%%% Beispiel
-\begin{frame}
-	\frametitle{Let's write some code}
-	\begin{block}{ToDo}
-	\begin{itemize}
-		\item Write a class
-		
-		%TODO: think about good example
-	\end{itemize}
-	\end{block}
-\end{frame}
-%%% Beispiel
 
 \section{The Cheeseshop}	% fork
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -704,11 +693,11 @@ None
 %%% Beispiel %%%%
 \begin{frame}
 	\frametitle{Let's write some code}
-	\begin{block}{ToDo}
+	\begin{block}{Exercises}
 	\begin{itemize}
-		\item fetch url
-		\item use find\_mail to search for email adress
-		\item write email list to file
+		\item[\checkmark] fetch url
+		\item[\checkmark] use \texttt{find\_mail} to search for email adress
+		\item[\checkmark] write email list to file
 	\end{itemize}
 	\end{block}
 \end{frame}
@@ -773,16 +762,7 @@ print br.form
 \begin{frame}[fragile]
 	\frametitle{Concurrency with Threads}
 	Python threading API is inspired by Java threading API.
-	\begin{exampleblock}{python -- threading}
-	%TODO: finish
-	\begin{lstlisting}
-	
-	\end{lstlisting}
-	\end{exampleblock}
-\end{frame}
 
-\begin{frame}[fragile]
-	\frametitle{Problems with Threads}
 	The Global Interpreter Lock \footnote{\scriptsize{\url{http://wiki.python.org/moin/GlobalInterpreterLock}}}
 	\footnote{\scriptsize{\url{http://www.dabeaz.com/GIL/}}} limits Python threads:
 	\begin{itemize}
@@ -791,7 +771,6 @@ print br.form
 		\item sometimes threads are slower than sequential computation
 		\begin{itemize}
 			\item cpu intensive tasks
-			\item signal processing overhead
 		\end{itemize}
 		\item GIL restricts access to Interpreter internals (and GIL unaware C-Extensions)
 	\end{itemize}
@@ -826,7 +805,6 @@ print br.form
 	H & unsigned short\\
 	I & unsgined int\\	
 	\end{tabular}
-	
 	
 	etc.
 \end{frame}
