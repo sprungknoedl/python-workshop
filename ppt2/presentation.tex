@@ -192,17 +192,17 @@ subprocess.call("cat " + filename, shell=True)
     \end{itemize}
     \end{block}
 
-    \begin{block}{vs. java}
+    \begin{block}{vs. Java}
     \begin{itemize}
         \item faster to write code, less boilerplate code
-        \item better api\footnote{\url{http://paulbuchheit.blogspot.com/2007/05/amazingly-bad-apis.html}}
+        \item better api\footnote{\scriptsize \url{paulbuchheit.blogspot.com/2007/05/amazingly-bad-apis.html}}
         \item python 2-50x slower than java
         \item python+psyco 1-5x slower than java
         \item real oop
     \end{itemize}
     \end{block}
     
-    \begin{block}{vs. php}
+    \begin{block}{vs. PHP}
     \begin{itemize}
         \item faster than php
         \item more use cases
@@ -215,11 +215,11 @@ subprocess.call("cat " + filename, shell=True)
 
     \begin{alertblock}{conclusions}
     \begin{itemize}
-        \item start of python interpreted costs! %TODO: wtf?
-        \item much faster coding
-        \begin{itemize}
-        	\item rapid development $\rightarrow$ more time to optimize bottlenecks
-        \end{itemize}
+        \item start of python interpreter costs! %TODO: wtf?
+        %\item much faster coding
+        %\begin{itemize}
+        	\item rapid development %$\rightarrow$ more time to optimize bottlenecks
+        %\end{itemize}
         \item \textbf{most performance bottlenecks are wrong algorithms}
         \item \url{http://wiki.python.org/moin/PythonSpeed}
         \begin{itemize}
@@ -232,21 +232,21 @@ subprocess.call("cat " + filename, shell=True)
 \section{List Comprehensions}	% tom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile, allowframebreaks]
+\begin{frame}[fragile]
 	\frametitle{List Comprehension and Generator Expression}
 	\begin{exampleblock}{python -- list comprehensions}
 	\begin{lstlisting}
->>> n = [ i**2 for i in range(100) if i & 1 == 0 ]
+>>> n = [i for i in range(100) if i % 2]
 >>> type(n)
 <type 'list'>
 >>> import os
->>> zipfiles = [ r+f for r, d, f in os.walk(".") \
-... if s.endswith(".zip") ]
+>>> zipfiles = [n for r, _, _ in os.walk(".") if n.endswith(".zip")]
 	\end{lstlisting}
 	\end{exampleblock}
 	
 	\begin{itemize}
 		\item quickly construct lists
+		\item list ist constructed and then returned
 	\end{itemize}
 
 \end{frame}
@@ -255,15 +255,14 @@ subprocess.call("cat " + filename, shell=True)
 	\frametitle{List Comprehension and Generator Expression}
 	\begin{exampleblock}{python -- generator expressions}
 	\begin{lstlisting}
->>> n = ( i**2 for i in range(100) if i & 1 == 0 )
+>>> n = (i for i in xrange(100) if i % 2)
 >>> type(n)
 <type 'generator'>
 >>> import os
->>> zipfiles = ( r+f for r, d, f in os.walk(".") \ 
-... if s.endswith(".zip") )
+>>> zipfiles = (n for n, _, _ in os.walk(".") if n.endswith(".zip"))
 	\end{lstlisting}
 	\end{exampleblock}
-\pause
+
 	\begin{itemize}
 		\item only one item is accessible
 		\item therfore consumes less memory
@@ -384,39 +383,6 @@ AttributeError: 'Fu' object has no attribute '__y'
 	\end{exampleblock}
 \end{frame}
 
-% Inheritance		-- fork
-\begin{frame}[fragile]
-	\frametitle{Inheritance}
-	\begin{exampleblock}{python -- multiple inheritance}
-	\begin{lstlisting}
->>> class A(object):
-...     def foo(self):
-...             print "A"
-...
->>> class B(object):
-...     def foo(self):
-...             print "B"
-...
->>> class C(A,B):
-...     pass
-...
->>> class D(B,A):
-...     pass
-...
->>> c = C()
->>> d = D()
-    \end{lstlisting}
-\pause
-	\begin{lstlisting}
->>> c = C()
->>> c.foo()
-A
->>> d = D()
->>> d.foo()
-B	
-	\end{lstlisting}
-	\end{exampleblock}
-\end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
 	\frametitle{quasi private from a heir's viewpoint}
@@ -458,6 +424,37 @@ B
 	\end{exampleblock}
 \end{frame}
 
+% Inheritance		-- fork
+\begin{frame}[fragile]
+	\frametitle{Inheritance}
+	\begin{exampleblock}{python -- multiple inheritance}
+	\begin{lstlisting}
+>>> class A(object):
+...     def foo(self):
+...             print "A"
+...
+>>> class B(object):
+...     def foo(self):
+...             print "B"
+...
+>>> class C(A,B):
+...     pass
+...
+>>> class D(B,A):
+...     pass
+...
+    \end{lstlisting}
+\pause
+	\begin{lstlisting}
+>>> c = C()
+>>> c.foo()
+A
+>>> d = D()
+>>> d.foo()
+B	
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
 
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
 % Special Methods (Operator Overloading)							-- tom
@@ -531,7 +528,8 @@ print br.form
 \end{frame}
 
 \subsection*{twisted}	% tom
-\begin{frame}
+\begin{frame}[fragile]
+	\frametitle{twisted -- building the engine of your internet}
 	\begin{block}{Protocol}
 	\begin{itemize}
 		\item a
