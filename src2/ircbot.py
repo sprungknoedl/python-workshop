@@ -52,6 +52,9 @@ class Factory(protocol.ClientFactory):
 		reactor.stop()
 		
 if __name__ == '__main__':
-	#reactor.connectSSL('irc.freenode.net', 6667, Factory())
-	reactor.connectTCP('irc.freenode.net', 6667, Factory())
+	factory = protocol.ClientFactory()
+	factory.protocol = Bot
+
+	#reactor.connectSSL('irc.freenode.net', 6667, factory)
+	reactor.connectTCP('irc.freenode.net', 6667, factory)
 	reactor.run()
