@@ -66,6 +66,7 @@
 \begin{frame}[fragile]
     \frametitle{Table of contents -- Wos ma heit mochn}
     \tableofcontents
+\pause
     And because it's called a \emph{Workshop} we will also write some code together ;)
 \end{frame}
 
@@ -83,14 +84,14 @@
 >>> x = [1,2,3] * 5
 	\end{lstlisting}
 	\end{exampleblock}
-
+\pause
 	\begin{exampleblock}{python -- some operators}
 	\begin{lstlisting}
 >>> x = 42**2 % 1337
 >>> 0xD5 & 0377 ^ 0xFF
 	\end{lstlisting}
 	\end{exampleblock}	
-	
+\pause
 	\begin{exampleblock}{python -- converting types}
 	\begin{lstlisting}
 >>> str(42)
@@ -153,8 +154,10 @@ subprocess.call("cat " + filename, shell=True)
 	\end{lstlisting}
 	\end{exampleblock}
 \pause
-	type in "non\_existent; rm -rf / \#"\\
-	Oh noes, command injection... this is bad ;)
+	type in "non\_existent; rm -rf / \#"\\ \pause
+	Oh noes, command injection... this is bad ;)\\
+	unfortunately, some complex commands require shell=True\\
+	$\rightarrow$ \emph{shlex} modul
 \end{frame}
 
 % REGEX!
@@ -255,14 +258,14 @@ subprocess.call("cat " + filename, shell=True)
 	\frametitle{List Comprehension and Generator Expression}
 	\begin{exampleblock}{python -- generator expressions}
 	\begin{lstlisting}
->>> n = (i for i in xrange(100) if i % 2)
+>>> n = ( i**2 for i in range(100) if i & 1 == 0 )
 >>> type(n)
 <type 'generator'>
 >>> import os
 >>> zipfiles = (n for n, _, _ in os.walk(".") if n.endswith(".zip"))
 	\end{lstlisting}
 	\end{exampleblock}
-
+\pause
 	\begin{itemize}
 		\item only one item is accessible
 		\item therfore consumes less memory
@@ -332,12 +335,37 @@ False
 	\end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Everything is an Object}
+	\begin{exampleblock}{python -- 	Fun Fact: Functions are objects too}
+	\begin{lstlisting}
+>>> def afunc(x):
+...     afunc.x += x
+...     return afunc.x
+...     
+>>> afunc.x = 0
+>>> afunc(1)
+1
+>>> afunc(2)
+3
+>>> afunc(1)
+4
+>>> afunc(10)
+14
+>>> afunc.x
+14
+>>> type(afunc)
+<type 'function'>
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 % Creating classes		-- fork
 	% new-style --> like the ability to subclass most built-in types
 % Konstruktor			-- fork
 \begin{frame}[fragile]
 	\frametitle{Class definition}
-	\begin{exampleblock}{python}
+	\begin{exampleblock}{python -- defining a class}
 	\begin{lstlisting}
 >>> class MyClass(object):
 ...     def __init__(self, y):
@@ -360,8 +388,8 @@ False
 % public/private		-- fork
 \begin{frame}[fragile]
 	\frametitle{public/private attributes}
-	everything is public.\\
-	private attributes/methods are written with preceding underscore
+	everything is public. (private attributes are seldom needed)\\
+	mark for internal use by naming with preceding underscore
 	\begin{exampleblock}{python -- quasi private attribute}
 	\begin{lstlisting}
 >>> class Fu(object):
@@ -383,6 +411,37 @@ AttributeError: 'Fu' object has no attribute '__y'
 	\end{exampleblock}
 \end{frame}
 
+% Inheritance		-- fork
+\begin{frame}[fragile]
+	\frametitle{Inheritance}
+	\begin{exampleblock}{python -- multiple inheritance}
+	\begin{lstlisting}
+>>> class A(object):
+...     def foo(self):
+...             print "A"
+...
+>>> class B(object):
+...     def foo(self):
+...             print "B"
+...
+>>> class C(A,B):
+...     pass
+...
+>>> class D(B,A):
+...     pass
+...
+    \end{lstlisting}
+\pause
+	\begin{lstlisting}
+>>> c = C()
+>>> c.foo()
+A
+>>> d = D()
+>>> d.foo()
+B	
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
 
 \begin{frame}[fragile, allowframebreaks]
 	\frametitle{quasi private from a heir's viewpoint}
@@ -424,40 +483,107 @@ AttributeError: 'Fu' object has no attribute '__y'
 	\end{exampleblock}
 \end{frame}
 
-% Inheritance		-- fork
 \begin{frame}[fragile]
-	\frametitle{Inheritance}
-	\begin{exampleblock}{python -- multiple inheritance}
+	\frametitle{static fields and class methods}
+	\begin{exampleblock}{python -- static aka class fields}
 	\begin{lstlisting}
->>> class A(object):
-...     def foo(self):
-...             print "A"
-...
->>> class B(object):
-...     def foo(self):
-...             print "B"
-...
->>> class C(A,B):
-...     pass
-...
->>> class D(B,A):
-...     pass
-...
-    \end{lstlisting}
+class Counter(object):
+    count = 0
+    def __init__(self):
+        self.__class__.count += 1
+	\end{lstlisting}
+	\end{exampleblock}
 \pause
+	\begin{exampleblock}{python -- class method}
+	\begin{lstlisting}
+class Counter(object):
+    count = 0
+    def __init__(self):
+        self.__class__.count += 1
+    @classmethod
+    def print_count(cls):
+        print cls.count
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{static methods}
+	\begin{exampleblock}{python -- static methods}
+	\begin{lstlisting}
+class SomeClass(object):
+    @staticmethod
+    def tostring(arg):
+        return str(arg)
+	\end{lstlisting}
+	\end{exampleblock}
+\pause
+	\begin{itemize}
+		\item Put functions in classes, which logically belong there.
+		\item Clean-up namespace
+		\item Modules probably better suited
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Properties}
+	
+	\begin{exampleblock}{python -- properties example}
+	\begin{lstlisting}
+class C(object):
+    def __init__(self):
+        self._x = None
+
+    @property
+    def x(self):
+        """I'm the 'x' property."""
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        if len(str(value)) <= 5:
+            self._x = value
+
+    @x.deleter
+    def x(self):
+    	self._old_x = self._x
+        self._x = None
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Properties}
+	\begin{exampleblock}{python -- properties example}
 	\begin{lstlisting}
 >>> c = C()
->>> c.foo()
-A
->>> d = D()
->>> d.foo()
-B	
-	\end{lstlisting}
+>>> c.x = 12
+>>> print c.x
+12
+>>> c.x = 8
+>>> print c.x
+8
+>>> del c.x
+>>> print c.x
+None
+>>> print c._old_x
+8
+    \end{lstlisting}
 	\end{exampleblock}
 \end{frame}
 
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
 % Special Methods (Operator Overloading)							-- tom
+
+\begin{frame}
+	\frametitle{Let's write some code}
+	\begin{block}{ToDo}
+	\begin{itemize}
+		\item Write a class
+		\item 
+	\end{itemize}
+	\end{block}
+\end{frame}
 
 
 \section{The Cheeseshop}	% fork
@@ -476,7 +602,7 @@ B
 	\end{lstlisting}
 	\end{exampleblock}
 	
-	Will install python ''.egg''s
+	installs python ''.egg''s
 \end{frame}
 
 \section{Advanced harvesting}
@@ -505,6 +631,20 @@ B
 	\end{exampleblock}
 \end{frame}
 
+%%% Beispiel %%%%
+\begin{frame}
+	\frametitle{Let's write some code}
+	\begin{block}{ToDo}
+	\begin{itemize}
+		\item fetch url
+		\item use find\_mail to search for email adress
+		\item write email list to file
+	\end{itemize}
+	\end{block}
+\end{frame}
+%%% Beispiel %%%%
+
+
 \subsection*{mechanize} % fork
 \begin{frame}[fragile]
 	\frametitle{mechanize -- scripted browser}
@@ -525,6 +665,7 @@ response2 = br.submit()
 print br.form
 	\end{lstlisting}
 	\end{exampleblock}
+	Additional modules: ClientForm, ClientCookie
 \end{frame}
 
 \subsection*{twisted}	% tom
@@ -767,6 +908,7 @@ print "c printf printed", y, "characters at", x
 	\begin{thebibliography}{3}
 	\bibitem{kopf} the authors' epic python knowledge
 	\bibitem{pydoc} \url{http://docs.python.org/}
+	\bibitem{diveinto} Dive into Python \url{http://diveintopython.org/}
 	\end{thebibliography}
 \end{frame}
 
