@@ -154,9 +154,9 @@ subprocess.call("cat " + filename, shell=True)
 	\end{lstlisting}
 	\end{exampleblock}
 \pause
-	type in "non\_existent; rm -rf / \#"\\ \pause
-	Oh noes, command injection... this is bad ;)\\
-	unfortunately, some complex commands require shell=True\\
+	type in: \texttt{non\_existent; rm -rf / \#}\\ \pause
+	Oh noes, command injection... this is bad :(\\
+	unfortunately, some complex commands require \texttt{shell=True}\\
 	$\rightarrow$ \emph{shlex} modul
 \end{frame}
 
@@ -573,7 +573,7 @@ None
 \end{frame}
 
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{duck typing}
 	\framesubtitle{or why java-style interfaces suck}
 
@@ -594,7 +594,8 @@ None
 >>> fork = Person()
 >>> action(donald)
 >>> action(fork)
-
+	\end{lstlisting}
+	\end{exampleblock}
 \end{frame}
 
 % Special Methods (Operator Overloading)							-- tom
@@ -641,7 +642,6 @@ None
 	\end{lstlisting}
 	\end{exampleblock}
 \end{frame}
-
 
 %%% Beispiel
 \begin{frame}
@@ -740,7 +740,8 @@ print br.form
 
 \subsection*{twisted}	% tom
 \begin{frame}[fragile]
-	\frametitle{twisted -- building the engine of your internet}
+	\frametitle{twisted}
+	\framesubtitle{building the engine of your internet}
 	\begin{block}{Protocol}
 	\begin{itemize}
 		\item handles data in an asynchronous manner
