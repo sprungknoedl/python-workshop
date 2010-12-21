@@ -2,11 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import mechanize
+import re
+
+br = mechanize.Browser()
 
 def crawl_site(siteurl):
-    new_sites = []
-    br = mechanize.Browser()
+    mails = []
     resp = br.open(siteurl)
-    for line in resp.readline():
-        mails = find_email(line)
-    resp
+    for line in resp:
+        for mail in re.findall("\w+@\w+\.\w+", line):
+            mails.append(mail)
+    for link in br.links():
+        mails.extend(crawl_site(link.absolute_url))
+    return mails
+
+print crawl_site("http://f0rki.at")
