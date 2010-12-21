@@ -573,7 +573,75 @@ None
 \end{frame}
 
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
+\begin{frame}
+	\frametitle{duck typing}
+	\framesubtitle{or why java-style interfaces suck}
+
+	\begin{exampleblock}{python -- silly example}
+	\begin{lstlisting}
+>>> class Duck(object):
+...    def quack(self): 
+...        print "Quaaaaaack!" 
+... 
+>>> class Person(object):
+...    def quack(self):
+...        print "The person imitates a duck."
+... 
+>>> def action(duck):
+...    duck.quack()
+...
+>>> donald = Duck()
+>>> fork = Person()
+>>> action(donald)
+>>> action(fork)
+
+\end{frame}
+
 % Special Methods (Operator Overloading)							-- tom
+\begin{frame}[fragile]
+	\frametitle{special methods}
+	\framesubtitle{the python way of operator overloading}
+
+	$\rightarrow$ \url{http://docs.python.org/reference/datamodel.html#special-method-names}
+
+	\begin{exampleblock}{python -- list style access}
+	\begin{lstlisting}
+>>> class MegaList(object):
+...     def __getitem__(self, index):
+...	        return index ** 2
+...
+>>> m = MegaList()
+>>> m[15]
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{special methods}
+	\framesubtitle{the python way of operator overloading}
+
+	\begin{exampleblock}{python -- iterator protocol}
+	\begin{lstlisting}
+>>> class MegaIterator(object):
+...     cur = 0
+...     max = 14
+...     def __iter__(self):
+...         return self
+...     def next(self):
+...         if cur < max:
+...             cur += 1
+...             return cur
+...         else:
+...             raise StopIteration()
+...
+>>> m = MegaIterator()
+>>> for i in m:
+...     print i
+...
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
 
 %%% Beispiel
 \begin{frame}
@@ -675,19 +743,23 @@ print br.form
 	\frametitle{twisted -- building the engine of your internet}
 	\begin{block}{Protocol}
 	\begin{itemize}
-		\item a
+		\item handles data in an asynchronous manner
+		\item implements protocol parsing and handling
+		\item never waits for an event
 	\end{itemize}
 	\end{block}
 
 	\begin{block}{Factory}
 	\begin{itemize}
-		\item a
+		\item persistent configuration is kept in a Factory class
+		\item instantiate Protocol for each connection
 	\end{itemize}
 	\end{block}
 
 	\begin{block}{Reactor}
 	\begin{itemize}
-		\item a
+		\item watches sockets for events
+		\item mainloop
 	\end{itemize}
 	\end{block}
 \end{frame}
