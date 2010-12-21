@@ -765,15 +765,45 @@ print br.form
 	\end{block}
 \end{frame}
 
-\subsection*{multithreaded / concurrent}	% tom
-
-% mention multiprocessing
-% include the following
-% http://wiki.python.org/moin/GlobalInterpreterLock
-% http://wiki.python.org/moin/StacklessPython
-
 \section{FYI}
 %%%%%%%%%%%%%
+
+\subsection*{multithreaded / concurrent}
+
+\begin{frame}[fragile]
+	\frametitle{Concurrency with Threads}
+	Python threading API is inspired by Java threading API.
+	\begin{exampleblock}{python -- threading}
+	%TODO: finish
+	\begin{lstlisting}
+	
+	\end{lstlisting}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Problems with Threads}
+	The Global Interpreter Lock \footnote{\scriptsize{\url{http://wiki.python.org/moin/GlobalInterpreterLock}}}
+	\footnote{\scriptsize{\url{http://www.dabeaz.com/GIL/}}} limits Python threads:
+	\begin{itemize}
+		\item real OS threads
+		\item but only one CPU
+		\item sometimes threads are slower than sequential computation
+		\begin{itemize}
+			\item cpu intensive tasks
+			\item signal processing overhead
+		\end{itemize}
+		\item GIL restricts access to Interpreter internals (and GIL unaware C-Extensions)
+	\end{itemize}
+	
+	Solution:
+	\begin{itemize}
+	\item use \emph{multiprocessing} module (very similar to threading API)
+	\item Stackless Python \scriptsize{\url{http://wiki.python.org/moin/StacklessPython}}
+	\end{itemize}
+\end{frame}
+% mention multiprocessing
+% include the following
 
 \subsection*{some low level stuff}	% fork
 % linksammlung
@@ -982,7 +1012,7 @@ print "c printf printed", y, "characters at", x
 \end{frame}
 
 \begin{frame}
-	\frametitle{References}
+	\frametitle{References/Links}
 	\begin{thebibliography}{3}
 	\bibitem{kopf} the authors' epic python knowledge
 	\bibitem{pydoc} \url{http://docs.python.org/}
