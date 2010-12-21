@@ -575,16 +575,18 @@ None
 % dynamic typing, duck typing (or why java-style interfaces suck)	-- tom
 % Special Methods (Operator Overloading)							-- tom
 
+%%% Beispiel
 \begin{frame}
 	\frametitle{Let's write some code}
 	\begin{block}{ToDo}
 	\begin{itemize}
 		\item Write a class
-		\item 
+		
+		%TODO: think about good example
 	\end{itemize}
 	\end{block}
 \end{frame}
-
+%%% Beispiel
 
 \section{The Cheeseshop}	% fork
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -660,7 +662,7 @@ print response1.geturl()
 print response1.info()
 print response1.read()
 br.select_form(name="order")
-br["cheeses"] = ["mozzarella", "caerphilly"]
+br["cheeses"] = ["mozzarella", "gouda"]
 response2 = br.submit()
 print br.form
 	\end{lstlisting}
@@ -721,6 +723,9 @@ print br.form
 	H & unsigned short\\
 	I & unsgined int\\	
 	\end{tabular}
+	
+	
+	etc.
 \end{frame}
 
 \begin{frame}[fragile]
