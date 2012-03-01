@@ -160,7 +160,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
 >>> x = "Hello " + "I'm" + " a string"
->>> x.switchcase()
+>>> x.swapcase()
 >>> x.lower()
 >>> x.find('string')
 >>> x.startswith("Hell")
@@ -782,7 +782,7 @@ bad: __import__('os').getcwd()
 	\begin{exampleblock}{python}
 	\begin{lstlisting}
 >>> help(open)
->>> f = open("bigbang.txt", "w+")
+>>> f = open("bigbang.txt", "r+")
 >>> f.readline()
 'What am I supposed to do?'
 >>> f.write("Well, have you considered telling her how you feel?\n")
@@ -851,6 +851,8 @@ bad: __import__('os').getcwd()
 
 \end{frame}
 
+\section{re -- Regular Expressions}
+
 % TODO
 % - 1-2 slides to regex (re modul)
 % raw strings
@@ -872,6 +874,7 @@ bad: __import__('os').getcwd()
 	\end{itemize}
 \end{frame}
 
+
 \begin{frame}[fragile]
 	\frametitle{Things you could improve -- Hausaufgaben}
 	
@@ -886,6 +889,9 @@ bad: __import__('os').getcwd()
 	\end{itemize}
 	\end{block}
 \end{frame}
+
+
+\section{References}
 
 \begin{frame}
 	\frametitle{References}
