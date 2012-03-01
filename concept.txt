@@ -1,6 +1,0 @@
-implement tftp server with ayncore
-
-https://tools.ietf.org/html/rfc1350
-
-
-
