@@ -1,0 +1,101 @@
+Python 2.7 (r27:82500, Oct 20 2010, 03:21:03) 
+[GCC 4.5.1] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> x = 42
+>>> x
+42
+>>> x = "If it looks like a duck and quacks like a duck, it must be a duck."
+>>> x
+'If it looks like a duck and quacks like a duck, it must be a duck.'
+>>> x = ['beer', 'wine', 'cheese']
+>>> x
+['beer', 'wine', 'cheese']
+>>> x = 'duck' + 42
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot concatenate 'str' and 'int' objects
+>>> 42 + 'd'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> 'd' * 3
+'ddd'
+>>> longlist = range(5,15)
+>>> longlist
+[5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+>>> longlist[3:]
+[8, 9, 10, 11, 12, 13, 14]
+>>> longlist[:4]
+[5, 6, 7, 8]
+>>> longlist[:-2]
+[5, 6, 7, 8, 9, 10, 11, 12]
+>>> longlist[-1:]
+[14]
+>>> longlist[0]
+5
+>>> longlist[15]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+>>> longlist[::2]
+[5, 7, 9, 11, 13]
+>>> longlist
+[5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+>>> longlist[3:6:2]
+[8, 10]
+>>> x = (1,2)
+>>> x
+(1, 2)
+>>> x = 1,2
+>>> x
+(1, 2)
+>>> a,b = x
+>>> a
+1
+>>> b
+2
+>>> a,b
+(1, 2)
+>>> a,b,c = 1,2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: need more than 2 values to unpack
+>>> a,b = 1,2,3
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: too many values to unpack
+>>> a,b = 4,2
+>>> a
+4
+>>> b
+2
+>>> def func(arg0, arg1='default', *args, **kwargs):
+...     print 'arg0: ', arg0
+...     print 'arg1: ', arg1
+...     print '*args:', args
+...     print '**kwargs:', kwargs
+... 
+>>> func(0)
+arg0:  0
+arg1:  default
+*args: ()
+**kwargs: {}
+>>> func(1,2,3,4,5)
+arg0:  1
+arg1:  2
+*args: (3, 4, 5)
+**kwargs: {}
+>>> func(1, awesome=42)
+arg0:  1
+arg1:  default
+*args: ()
+**kwargs: {'awesome': 42}
+>>> func
+<function func at 0xb7356dbc>
+>>> type(func)
+<type 'function'>
+>>> type(x)
+<type 'tuple'>
+>>> input('really bad: ')
+really bad: __import__('os').getcwd()
+'/home/tom/code/python-workshop/src'
